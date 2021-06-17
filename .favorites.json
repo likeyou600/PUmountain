@@ -1,0 +1,34 @@
+[
+    {
+        "type": "Directory",
+        "name": "/var/www/laravel_PUmountain/public",
+        "parent_id": null,
+        "workspaceRoot": "/var/www/laravel_PUmountain",
+        "workspacePath": "public",
+        "id": "RrWF64vQzgSPGnJ3"
+    },
+    {
+        "type": "Directory",
+        "name": "/var/www/laravel_PUmountain/resources/views/PUmountain",
+        "parent_id": null,
+        "workspaceRoot": "/var/www/laravel_PUmountain",
+        "workspacePath": "resources/views/PUmountain",
+        "id": "RjQSXiN31kmWbF0L"
+    },
+    {
+        "type": "File",
+        "name": "/var/www/laravel_PUmountain/routes/web.php",
+        "parent_id": null,
+        "workspaceRoot": "/var/www/laravel_PUmountain",
+        "workspacePath": "routes/web.php",
+        "id": "AOnUGr3lSvRZzb0m"
+    },
+    {
+        "type": "Directory",
+        "name": "/var/www/laravel_PUmountain/app/Http/Controllers",
+        "parent_id": null,
+        "workspaceRoot": "/var/www/laravel_PUmountain",
+        "workspacePath": "app/Http/Controllers",
+        "id": "oGQg0yDcsO7d8IYn"
+    }
+]

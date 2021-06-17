@@ -1,0 +1,297 @@
+@media only screen and (min-width:576px) {
+    .PUtitle {
+        font-family: 'Yusei Magic', sans-serif;
+        margin-bottom: 0px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 40px;
+        z-index: -1;
+    }
+    .PUpicsli {
+        top: 50%;
+        left: 4%;
+        transform: translate(0, -50%);
+        z-index: 5;
+        width: 45%;
+        position: absolute;
+    }
+    .PUpeople {
+        position: absolute;
+        width: 57%;
+        top: 50%;
+        left: 43%;
+    }
+    .PUgrass {
+        position: absolute;
+        width: 110%;
+        top: 57%;
+        left: 0%;
+    }
+    .PUcloud {
+        position: absolute;
+        width: 53%;
+        top: -18%;
+        left: 49%;
+        z-index: -1;
+    }
+    .PUchat {
+        position: absolute;
+        width: 41%;
+        top: 14%;
+        left: 63%;
+        z-index: 0;
+    }
+    .PUpoint {
+        border: none;
+        background-color: transparent;
+        background-size: cover;
+        height: 120px;
+        width: 120px;
+        outline: none;
+    }
+    .maintenance {
+        position: absolute;
+        top: 24%;
+        right: 35%;
+        z-index: 3;
+        animation: Updown 1s infinite alternate;
+    }
+    @keyframes Updown {
+        from {
+            top: 23%;
+        }
+        to {
+            top: 25%;
+        }
+    }
+    .camera {
+        position: absolute;
+        top: 55%;
+        right: 35%;
+        z-index: 3;
+        animation: camera 1s infinite alternate;
+    }
+    @keyframes camera {
+        from {
+            top: 54%;
+        }
+        to {
+            top: 56%;
+        }
+    }
+    .PUtext {
+        text-align: center;
+        color: black;
+        font-size: 25px;
+        font-family: 'Yusei Magic', sans-serif;
+    }
+    .contact_text {
+        text-align: center;
+        color: black;
+        font-size: 30px;
+        font-family: 'Noto Sans TC', sans-serif;
+        font-weight: 600;
+    }
+    .contact {
+        position: absolute;
+        top: 25%;
+        right: 11%;
+        z-index: 3;
+    }
+    .PUcontact_icon {
+        border: none;
+        background-color: transparent;
+        background-size: cover;
+        height: 70px;
+        width: 70px;
+        outline: none;
+        margin: 0 10px 0 10px;
+    }
+    .pucontainer {
+        margin-right: auto;
+        margin-left: auto;
+        max-width: 400px;
+        position: relative;
+        z-index: 3;
+    }
+    .tooltitle {
+        font-size: 30px;
+        margin-bottom: 0;
+        display: inline-block;
+    }
+    .PUcardbody {
+        padding: 0.5rem;
+    }
+    .marquee {
+        width: 400px;
+        margin: 0 auto;
+        white-space: nowrap;
+        overflow: hidden;
+        box-sizing: border-box;
+        border: 2px solid #66BAB7;
+    }
+    .marqueefontsize {
+        font-size: 23px;
+        font-family: 'Noto Sans TC', sans-serif;
+        font-weight: 600;
+    }
+    .seecart {
+        position: fixed;
+        bottom: 0px;
+        background: #F19483;
+        z-index: 1;
+        border-top-right-radius: 30px;
+        border-top-left-radius: 30px;
+        font-size: 30px;
+        width: 100%;
+        font-family: 'Yusei Magic', sans-serif;
+        border: none;
+        outline: none;
+    }
+    .nav-counter {
+        position: absolute;
+        top: 5px;
+        right: -4px;
+        min-width: 8px;
+        height: 20px;
+        line-height: 20px;
+        margin-top: -11px;
+        padding: 0 5px;
+        font-weight: normal;
+        color: white;
+        text-align: center;
+        text-shadow: 0 1px rgb(0 0 0 / 20%);
+        background: #e23442;
+        border-radius: 11px;
+    }
+    .margintop {
+        margin-top: 40px;
+    }
+    .cartcontainer {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        max-width: 940px;
+    }
+    .filefont {
+        font-size: 21px;
+        margin-bottom: 0;
+        display: inline-block;
+    }
+    .orderdivider {
+        background-color: #FB966E;
+        height: 5px;
+        margin: 15px -15px;
+    }
+}
+
+.puimg {
+    width: 45px;
+    border-radius: 20%;
+    outline: none;
+}
+
+.bodyimg {
+    background-image: url('../../picture/PUmountain/map.jpg');
+    background-size: cover;
+    width: 100%;
+}
+
+.PUcontainer {
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.PUcard {
+    background-image: url('../../picture/PUmountain/card.jpg');
+    background-size: cover;
+    background-position: center;
+    border: 0px solid #dee2e6!important;
+}
+
+.PUnavheader {
+    z-index: 1;
+    position: relative;
+    padding: 0 15px 0 15px;
+}
+
+.opwhite {
+    background-color: rgba(245, 245, 245, 0.4);
+}
+
+.PUboxshadow {
+    box-shadow: 10px 10px 0 #33333380;
+}
+
+.borderradis {
+    border-radius: 5%;
+}
+
+.PUcardtop {
+    margin-top: 10px;
+}
+
+.marquee span {
+    display: inline-block;
+    padding-left: 100%;
+    -webkit-animation: marquee 9s linear infinite;
+    animation: marquee 9s linear infinite;
+}
+
+
+/* Make it move */
+
+@keyframes marquee {
+    0% {
+        transform: translate(0%, 0);
+    }
+    100% {
+        transform: translate(-100%, 0);
+    }
+}
+
+.outborrowimg {
+    z-index: 2;
+    position: absolute;
+}
+
+input::placeholder {
+    text-align: center;
+}
+
+.updatepic {
+    background-color: #55c1d2;
+    color: #fff;
+    border-color: #55c1d2;
+    margin-top: 20px;
+}
+
+.modal-backdrop {
+    z-index: -1;
+}
+
+#loading {
+    position: fixed;
+    top: 40%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 999;
+}
+
+.loadingup {
+    position: fixed;
+    display: none;
+    z-index: 400;
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(5 5 5 / 60%);
+}
+
+.PUuserbutt {
+    width: 100%;
+}
