@@ -133,7 +133,9 @@ class PUadminset extends Controller
                 if($request->newcategory!=1){
                 $newqua=$request->select;
                 $newcategory=$request->newcategory;
-                $newid=count(DB::select('select * from items'))+1;
+                $last_data=DB::select('select * from items ORDER BY items_id DESC LIMIT 0 , 1');
+                $last=$last_data[0]->items_id;
+                $newid=$last+1;
                 $picture = $request->file('newitempic');
                 $filename = $newcategory."_$newid.".$picture->getClientOriginalExtension();
                 DB::insert('insert into items (items_category,items_quantity,items_picture) values (?,?,?)', [$newcategory,$newqua,$filename]);
