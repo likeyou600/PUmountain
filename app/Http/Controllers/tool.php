@@ -176,12 +176,12 @@ class tool extends Controller
             }
             Cart::session($userid)->clear();
 
-            $to = Session::get('Email');; //收件者
-            $subject = "器材領取通知"; //信件標題
-            $username=Session::get('username');
-            $msg = "嗨~"."$username"."\r\n"."你向登山社借了器材，請聯絡社長拿器材哦"."\r\n"."社長LINE:https://line.me/ti/p/X0XBiAnjFw";//信件內容
-            $headers = "From:靜宜大學登山社"; //寄件者
-            mail("$to", "$subject", "$msg", "$headers");
+            // $to = Session::get('Email');; //收件者
+            // $subject = "器材領取通知"; //信件標題
+            // $username=Session::get('username');
+            // $msg = "嗨~"."$username"."\r\n"."你向登山社借了器材，請聯絡社長拿器材哦"."\r\n"."社長LINE:https://line.me/ti/p/X0XBiAnjFw";//信件內容
+            // $headers = "From:靜宜大學登山社"; //寄件者
+            // mail("$to", "$subject", "$msg", "$headers");
             return redirect("myorder")->with('myordermessage','申請成功!');
             }
         }else{
@@ -240,12 +240,12 @@ class tool extends Controller
                 DB::update("update ordertab set order_status = 1 , order_date = '$getDate' , order_last_return_date = '$order_last_return_date' where order_id = ?", [$order_id]);
 
 
-                $to = Session::get('Email');; //收件者
-                $subject = "器材借用通知"; //信件標題
-                $username=Session::get('username');
-                $msg = "嗨~"."$username"."\r\n"."你向登山社領取了器材"."\r\n"."借用開始日為"."$getDate"."\r\n"."最慢歸還日為"."$order_last_return_date"."\r\n"."祝旅途愉快 !~~";//信件內容
-                $headers = "From:靜宜大學登山社"; //寄件者
-                mail("$to", "$subject", "$msg", "$headers");
+                // $to = Session::get('Email');; //收件者
+                // $subject = "器材借用通知"; //信件標題
+                // $username=Session::get('username');
+                // $msg = "嗨~"."$username"."\r\n"."你向登山社領取了器材"."\r\n"."借用開始日為"."$getDate"."\r\n"."最慢歸還日為"."$order_last_return_date"."\r\n"."祝旅途愉快 !~~";//信件內容
+                // $headers = "From:靜宜大學登山社"; //寄件者
+                // mail("$to", "$subject", "$msg", "$headers");
 
 
                 return redirect("myorder")->with('myordermessage','借用成功!');
@@ -286,12 +286,12 @@ class tool extends Controller
                 
                 DB::update("update ordertab set order_status = 0 , order_return_date = '$getDate' where order_id = ?", [$order_id]);
 
-                $to = Session::get('Email');; //收件者
-                $subject = "器材歸還確認"; //信件標題
-                $username=Session::get('username');
-                $msg = "嗨~"."$username"."\r\n"."你已向登山社歸還了器材"."\r\n"."感謝您~~!";//信件內容
-                $headers = "From:靜宜大學登山社"; //寄件者
-                mail("$to", "$subject", "$msg", "$headers");
+                // $to = Session::get('Email');; //收件者
+                // $subject = "器材歸還確認"; //信件標題
+                // $username=Session::get('username');
+                // $msg = "嗨~"."$username"."\r\n"."你已向登山社歸還了器材"."\r\n"."感謝您~~!";//信件內容
+                // $headers = "From:靜宜大學登山社"; //寄件者
+                // mail("$to", "$subject", "$msg", "$headers");
                 
                 return redirect("myorder")->with('myordermessage','歸還成功!');;
 }
