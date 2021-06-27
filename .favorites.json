@@ -30,5 +30,13 @@
         "workspaceRoot": "/var/www/laravel_PUmountain",
         "workspacePath": "app/Http/Controllers",
         "id": "oGQg0yDcsO7d8IYn"
+    },
+    {
+        "type": "Directory",
+        "name": "/var/www/laravel_PUmountain/database",
+        "parent_id": null,
+        "workspaceRoot": "/var/www/laravel_PUmountain",
+        "workspacePath": "database",
+        "id": "dCKruLTh5atOiwoq"
     }
 ]
