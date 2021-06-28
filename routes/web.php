@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PUadminset;
+use App\Http\Controllers\tool;
+use App\Http\Controllers\UserAuth;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,70 +18,70 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('PUmountain', function () {
-    return view('PUmountain/PUmountain');
+    return view('PUmountain');
 });
 Route::get('PUpicture', function () {
-    return view('PUmountain/PUpicture');
+    return view('PUpicture');
 });
 
 
-Route::get('/login', 'App\Http\Controllers\UserAuth@login');
-Route::get('/logout', 'App\Http\Controllers\UserAuth@logout');
+Route::get('/login', [UserAuth::class,'login']);
+Route::get('/logout', [UserAuth::class,'logout']);
 
-Route::get('/register', 'App\Http\Controllers\UserAuth@register');
+Route::get('/register', [UserAuth::class,'register']);
 
-Route::get('/profile', 'App\Http\Controllers\UserAuth@profile');
-
-
-Route::post('/store', 'App\Http\Controllers\UserAuth@store');
-
-Route::post('/logs', 'App\Http\Controllers\UserAuth@logs');
-
-Route::post('/change_nickname', 'App\Http\Controllers\UserAuth@change_nickname');
-
-Route::post('/change_profilepicture', 'App\Http\Controllers\UserAuth@change_profilepicture');
-
-Route::post('/change_password', 'App\Http\Controllers\UserAuth@change_password');
+Route::get('/profile', [UserAuth::class,'profile']);
 
 
+Route::post('/store', [UserAuth::class,'store']);
 
+Route::post('/logs', [UserAuth::class,'logs']);
 
-Route::get('/borrow/mat', 'App\Http\Controllers\tool@mat');
-Route::get('/borrow/bag', 'App\Http\Controllers\tool@bag');
-Route::get('/borrow/backpack', 'App\Http\Controllers\tool@backpack');
-Route::get('/borrow/burner', 'App\Http\Controllers\tool@burner');
-Route::get('/borrow/camp', 'App\Http\Controllers\tool@camp');
-Route::get('/borrow/other', 'App\Http\Controllers\tool@other');
-Route::post('/add-to-cart', 'App\Http\Controllers\tool@AddToCart');
-Route::get('/borrow/cart', 'App\Http\Controllers\tool@cart');
-Route::post('/cartprocess', 'App\Http\Controllers\tool@cartprocess');
-Route::get('/borrow/removecart', 'App\Http\Controllers\tool@removecart');
-Route::get('/borrowrule', 'App\Http\Controllers\tool@borrowrule');
-Route::get('/checksend', 'App\Http\Controllers\tool@checksend');
-Route::get('/carttodb', 'App\Http\Controllers\tool@carttodb');
-Route::get('/myorder', 'App\Http\Controllers\tool@myorder');
-Route::get('/sendpicview/{order_id}', 'App\Http\Controllers\tool@sendpicview');
-Route::post('/sendpic/{order_id}', 'App\Http\Controllers\tool@sendpic');
-Route::get('/sendreturnpicview/{order_id}', 'App\Http\Controllers\tool@sendreturnpicview');
-Route::post('/returndb/{order_id}', 'App\Http\Controllers\tool@returndb');
+Route::post('/change_nickname', [UserAuth::class,'change_nickname']);
+
+Route::post('/change_profilepicture', [UserAuth::class,'change_profilepicture']);
+
+Route::post('/change_password', [UserAuth::class,'change_password']);
 
 
 
-Route::get('/admin', 'App\Http\Controllers\PUadminset@admin');
-Route::get('/admin/member', 'App\Http\Controllers\PUadminset@member');
-Route::get('/admin/changetoadmin/{id}', 'App\Http\Controllers\PUadminset@changetoadmin');
-Route::get('/admin/equipment', 'App\Http\Controllers\PUadminset@equipment');
-Route::post('/admin/change_equipment', 'App\Http\Controllers\PUadminset@change_equipment');
-Route::get('/admin/addnewitem', 'App\Http\Controllers\PUadminset@addnewitem');
-Route::post('/admin/updatenewitem', 'App\Http\Controllers\PUadminset@updatenewitem');
 
-Route::get('/admin/adminreturn/{order_id}', 'App\Http\Controllers\PUadminset@adminreturn');
+Route::get('/borrow/mat',[tool::class,'mat']);
+Route::get('/borrow/bag',[tool::class,'bag']);
+Route::get('/borrow/backpack', [tool::class,'backpack']);
+Route::get('/borrow/burner',[tool::class,'burner']);
+Route::get('/borrow/camp',[tool::class,'camp']);
+Route::get('/borrow/other',[tool::class,'other']);
+Route::post('/add-to-cart', [tool::class,'AddToCart']);
+Route::get('/borrow/cart',[tool::class,'cart']);
+Route::post('/cartprocess', [tool::class,'cartprocess']);
+Route::get('/borrow/removecart', [tool::class,'removecart']);
+Route::get('/borrowrule', [tool::class,'borrowrule']);
+Route::get('/checksend', [tool::class,'checksend']);
+Route::get('/carttodb',[tool::class,'carttodb']);
+Route::get('/myorder',[tool::class,'myorder']);
+Route::get('/sendpicview/{order_id}',[tool::class,'sendpicview']);
+Route::post('/sendpic/{order_id}',[tool::class,'sendpic']);
+Route::get('/sendreturnpicview/{order_id}',[tool::class,'sendreturnpicview']);
+Route::post('/returndb/{order_id}',[tool::class,'returndb']);
 
 
-Route::get('/admin/allorder/all', 'App\Http\Controllers\PUadminset@all');
-Route::get('/admin/allorder/waitoget', 'App\Http\Controllers\PUadminset@waitoget');
-Route::get('/admin/allorder/borrowing', 'App\Http\Controllers\PUadminset@borrowing');
-Route::get('/admin/allorder/done', 'App\Http\Controllers\PUadminset@done');
+
+Route::get('/admin',[PUadminset::class,'admin']);
+Route::get('/admin/member',[PUadminset::class,'member']);
+Route::get('/admin/changetoadmin/{id}',[PUadminset::class,'changetoadmin']);
+Route::get('/admin/equipment',[PUadminset::class,'equipment']);
+Route::post('/admin/change_equipment',[PUadminset::class,'change_equipment']);
+Route::get('/admin/addnewitem',[PUadminset::class,'addnewitem']);
+Route::post('/admin/updatenewitem',[PUadminset::class,'updatenewitem']);
+
+Route::get('/admin/adminreturn/{order_id}', [PUadminset::class,'adminreturn']);
+
+
+Route::get('/admin/allorder/all',[PUadminset::class,'all']);
+Route::get('/admin/allorder/waitoget',[PUadminset::class,'waitoget']);
+Route::get('/admin/allorder/borrowing',[PUadminset::class,'borrowing']);
+Route::get('/admin/allorder/done',[PUadminset::class,'done']);
 
 
 
