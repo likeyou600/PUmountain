@@ -2,14 +2,14 @@
 <html lang="zh-TW">
 
 <head>
-    @include('PUmountain.layouts.head')
+    @include('layouts.head')
     <title>靜宜大學登山社</title>
 </head>
 <body class="bodyimg" style="height: 770px;overflow: hidden;">
     <div class="PUcontainer ">
         <header class="PUnavheader">
 
-            @include('PUmountain.layouts.navbar')
+            @include('layouts.navbar')
     </header>
 
     <section id="llooggiinn">

@@ -55,7 +55,7 @@
     <div class="PUcontainer ">
         <header class="PUnavheader">
 
-            @include('PUmountain.layouts.navbar')
+            @include('layouts.navbar')
             <p class="marquee"><span class="marqueefontsize">~歡迎加入靜宜大學登山社~社費:NTD400~終生制~加入後即可借裝備!~</span></p>
 
 
