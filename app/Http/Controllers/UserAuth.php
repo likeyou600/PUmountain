@@ -3,84 +3,67 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB; 
-use Session;
-use Image;
+use DB,Session,Cart,Image,Validator; 
+use App\Models\user;
+use App\Models\item;
+use App\Models\ordertab_infor;
+use App\Models\ordertab_items;
+
 class UserAuth extends Controller
 {
     public function store(request $request){
-        
-        $account=$request->input('account');
-        $nickname=$request->input('nickname');
-        $contactEmail=$request->input('contactEmail');
-        $contactLINE=$request->input('contactLINE');
-        $str = "abcdefghjkmnopqrstuvwxyz23456789";
-        $password = substr(str_shuffle($str), 0, 6);
-        
-        
-        try{
-        DB::insert('insert into users (id,nickname,account,password,contactEmail,contactLINE) values (?, ?,?,?,?,?)', [null,$nickname,$account,$password,$contactEmail,$contactLINE]);
-        
-        return redirect('login')->with('userloginpage','註冊成功，請登入');  
-        
-        }
-        catch (\Illuminate\Database\QueryException $e){
-            $errorCode = $e->errorInfo[1];
-            if($errorCode == 1062){
-                return redirect('register')->with('registerinfor','帳號已被使用過'); 
-            }
-            else if($errorCode == 1406){
-                return redirect('register')->with('registerinfor','最多8個中英文混合!'); 
-            }
-        }
-    }
+        $rules = [
+            'nickname'=> 'required|max:8',
+            'account'=> 'required|alpha_num|unique:user,user_account|max:16',
+            'contactEmail'=> 'required|email|max:64',
+            'contactLINE'=> 'required|',
+        ];
+        $messages = [
+            'nickname.max'=>'名子超出長度',
+            'account.max'=>'帳號超出長度',
+            'contactEmail.max'=>'信箱超出長度',
+            'required' => '請完整輸入內容~',
+            'alpha_num' => '只能英文數字哦~',
+            'email' => '信箱格式錯誤!',
+            'account.unique' =>'帳號已被使用過!'
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
 
+        if ($validator->fails()) {
+        return back()->withInput()->withErrors($validator);
+        }
+
+        else{
+            $str = "abcdefghjkmnpqrstuvwxyz23456789";
+            $password = substr(str_shuffle($str), 0, 6);
+    
+           
+                user::create([
+                'user_nickname'=>$request->nickname,
+                'user_account'=>$request->account,
+                'user_password'=>$password,
+                'user_contactEmail'=>$request->contactEmail,
+                'user_contactLine'=>$request->contactLINE,
+            ]
+            );
+            return redirect('login')->with('message','註冊成功');
+        }        
+    }
     public function register(){
         if(session()->has('username')){
             return redirect('profile');
         }
         else{
-            return view('PUmountain/PURegister');
+            return view('PURegister');
         }
     }
 
-    public function profile(){
-        if(session()->has('username')){
-            return view('PUmountain/PUuserprofile');
-        }
-        else{
-        return redirect('login');
-        }
-    }
-    public function login(){
-        if(session()->has('username')){
-            return redirect('profile');
-        }
-        else{
-        return view('PUmountain/PULogin');
-        }
-    }
-
-    
-    public function logout(){
-        if(session()->has('username')){
-            session()->pull('username');
-            session()->pull('userid');
-            session()->pull('userpicture');
-            session()->pull('account');
-            session()->pull('Email');
-            session()->pull('admin');
-        }
-
-        return redirect('PUmountain')->with('logout_check','1');
-        }
-    
 
 
     public function logs(request $request){
-        
-        $account=$request->input('account');
-        $password=$request->input('password');
+      
+
+       
 
         
         $id_data=DB::select('select id from users where account=? and password=?', [$account,$password]);
@@ -109,6 +92,44 @@ class UserAuth extends Controller
             return redirect('login')->with('userloginpage','帳密錯了哦');   
         }
     }
+
+ 
+    public function login(){
+        if(session()->has('username')){
+            return redirect('profile');
+        }
+        else{
+        return view('PULogin');
+        }
+    }
+
+ 
+    
+    public function profile(){
+        if(session()->has('username')){
+            return view('PUuserprofile');
+        }
+        else{
+        return redirect('login');
+        }
+    }
+
+    public function logout(){
+        if(session()->has('username')){
+            session()->pull('username');
+            session()->pull('userid');
+            session()->pull('userpicture');
+            session()->pull('account');
+            session()->pull('Email');
+            session()->pull('admin');
+        }
+
+        return redirect('PUmountain')->with('logout_check','1');
+        }
+    
+
+
+    
 
         public function change_nickname(request $request){
             try{
