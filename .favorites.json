@@ -8,14 +8,6 @@
         "id": "RrWF64vQzgSPGnJ3"
     },
     {
-        "type": "Directory",
-        "name": "/var/www/laravel_PUmountain/resources/views/PUmountain",
-        "parent_id": null,
-        "workspaceRoot": "/var/www/laravel_PUmountain",
-        "workspacePath": "resources/views/PUmountain",
-        "id": "RjQSXiN31kmWbF0L"
-    },
-    {
         "type": "File",
         "name": "/var/www/laravel_PUmountain/routes/web.php",
         "parent_id": null,
@@ -38,5 +30,21 @@
         "workspaceRoot": "/var/www/laravel_PUmountain",
         "workspacePath": "database",
         "id": "dCKruLTh5atOiwoq"
+    },
+    {
+        "type": "Directory",
+        "name": "/var/www/laravel_PUmountain/app/Models",
+        "parent_id": null,
+        "workspaceRoot": "/var/www/laravel_PUmountain",
+        "workspacePath": "app/Models",
+        "id": "XGl30cWKJiOskP7B"
+    },
+    {
+        "type": "Directory",
+        "name": "/var/www/laravel_PUmountain/resources/views",
+        "parent_id": null,
+        "workspaceRoot": "/var/www/laravel_PUmountain",
+        "workspacePath": "resources/views",
+        "id": "M27WZVXrK1BIz0pO"
     }
 ]
