@@ -13,19 +13,7 @@
         </header>
 
         <section id="llooggiinn">
-            @if (Session::has('message'))
-                <div class="alert alert-success animate__animated animate__bounce alertsize" style="z-index: 5;"
-                    role="alert" id="success_alert">
-                    <p class="alerttext userfontfamily3">{{ session('message') }}</p>
-                </div>
-            @elseif($errors->count())
-                <div class="alert alert-success animate__animated animate__bounce alertsize" style="z-index: 5;"
-                    role="alert" id="success_alert">
-                    
-                    <p class="alerttext userfontfamily3">@foreach ($errors->all() as $error){{ $error }} ; @endforeach</p>
-                    
-                </div>
-            @endif
+            @include('layouts.alert')
             <div class='container' style="margin-top: 15px;">
 
                 <div class="row justify-content-center align-items-center">
@@ -81,8 +69,8 @@
                                                 <label for="text" class="userfontfamily3 logintext"
                                                     style="margin-left: 22px;">聯絡方式(LINE)</label>
                                                 <input type="text" name="contactLINE" id="contactLINE"
-                                                value="{{ old('contactLINE') }}"
-                                                    placeholder="請輸入LINE ID~" required="required" autocomplete="off"
+                                                    value="{{ old('contactLINE') }}" placeholder="請輸入LINE ID~"
+                                                    required="required" autocomplete="off"
                                                     class="form-control PUboxshadow form-control-lg opwhite">
                                             </div>
                                         </div>
