@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB,Session,Cart,Image,Validator; 
-use App\Models\user;
+use App\Models\User;
 use App\Models\item;
 use App\Models\ordertab_infor;
 use App\Models\ordertab_items;
-
-class UserAuth extends Controller
+use Illuminate\Support\Facades\Auth;
+class UserAuthController extends Controller
 {
     public function store(request $request){
         $rules = [
@@ -62,53 +62,67 @@ class UserAuth extends Controller
 
     public function logs(request $request){
       
+        $rules = [
+            'account'=> 'required|alpha_num',
+            'password'=> 'required|alpha_num',
+        ];
+        $messages = [
+            'required' => '請完整輸入內容~',
+            'alpha_num' => '只能英文數字哦~',
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
 
-       
-
-        
-        $id_data=DB::select('select id from users where account=? and password=?', [$account,$password]);
-        if($id_data){
-        $id = $id_data[0]->id;
-        $nickname_data=DB::select('select nickname from users where id=?', [$id]);
-        $nickname=$nickname_data[0]->nickname;
-        $userpic_data=DB::select('select picture from users where id=?', [$id]);
-        $userpic=$userpic_data[0]->picture;
-        $account_data=DB::select('select account from users where id=?', [$id]);
-        $account=$account_data[0]->account;
-        $contactEmail_data=DB::select('select contactEmail from users where id=?', [$id]);
-        $contactEmail=$contactEmail_data[0]->contactEmail;
-        $admin_data=DB::select('select admin from users where id=?', [$id]);
-        $admin=$admin_data[0]->admin;
-        session()->put('userpicture',$userpic); 
-        session()->put('userid',$id);
-        session()->put('account',$account);
-        session()->put('username',$nickname);
-        session()->put('password',$password);
-        session()->put('Email',$contactEmail);
-        session()->put('admin',$admin);
-        return redirect('profile')->with('userprofile',"歡迎{$nickname}登入");
+        if ($validator->fails()) {
+        return back()->withInput()->withErrors($validator);
         }
         else{
-            return redirect('login')->with('userloginpage','帳密錯了哦');   
+
+            $user = user::where([
+                'user_account' => $request->account, 
+                'user_password' => $request->password
+            ])->first();
+            
+            if($user)
+            {
+            Auth::login($user);
+            
+            $user = Auth::user();
+            // dd(Auth::user());
+            // $request->session()->regenerate();
+            // session()->put('test',$user); 
+            return redirect('profile');
+            }
+            else{
+                return redirect('login')->with('message','帳密錯了哦');   
+            }
         }
+        // session()->put('userid',$id);
+        // session()->put('account',$account);
+        // session()->put('username',$nickname);
+        // session()->put('password',$password);
+        // session()->put('Email',$contactEmail);
+        // session()->put('admin',$admin);
+ 
     }
 
  
     public function login(){
-        if(session()->has('username')){
-            return redirect('profile');
-        }
-        else{
+        // dd(Auth::user());
         return view('PULogin');
-        }
+        
     }
 
  
     
-    public function profile(){
-        if(session()->has('username')){
+    public function profile(request $request){
+
+        // dd(Auth::user());
+        // $value = $request->session()->get('test');
+
+        if (Auth::user()) {
             return view('PUuserprofile');
         }
+        
         else{
         return redirect('login');
         }

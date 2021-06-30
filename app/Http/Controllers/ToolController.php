@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB; 
-use Session;
-use Cart;
-use Image;
-class tool extends Controller
+
+class ToolController extends Controller
 {
     
         public function mat(){

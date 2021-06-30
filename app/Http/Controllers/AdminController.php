@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB; 
-use Session;
-use Image;
-class PUadminset extends Controller
+
+class AdminController extends Controller
 {
     public function admin(){
         if(Session::get('admin')==1){
