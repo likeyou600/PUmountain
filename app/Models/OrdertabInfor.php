@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class item extends Model
+class OrdertabInfor extends Model
 {
-    protected $table = 'item';
+    protected $table = 'ordertab_infors';
     public $timestamps = false;
     use HasFactory;
 }
