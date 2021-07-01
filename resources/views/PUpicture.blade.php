@@ -3,7 +3,7 @@
 
 <head>
    
-    @include('PUmountain.layouts.head')
+    @include('layouts.head')
     <title>靜宜大學登山社</title>
     <script>
         function do_click() {
@@ -20,7 +20,7 @@
     <div class="PUcontainer ">
         <header class="PUnavheader">
             
-            @include('PUmountain.layouts.navbar')
+            @include('layouts.navbar')
 
         </header>
 

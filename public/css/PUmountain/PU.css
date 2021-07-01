@@ -196,7 +196,7 @@
 }
 
 .bodyimg {
-    background-image: url('../../picture/PUmountain/map.jpg');
+    background-image: url('../../picture/material/map.jpg');
     background-size: cover;
     width: 100%;
 }
@@ -207,7 +207,7 @@
 }
 
 .PUcard {
-    background-image: url('../../picture/PUmountain/card.jpg');
+    background-image: url('../../picture/material/card.jpg');
     background-size: cover;
     background-position: center;
     border: 0px solid #dee2e6!important;
