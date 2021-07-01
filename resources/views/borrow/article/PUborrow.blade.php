@@ -2,9 +2,9 @@
 <html lang="zh-TW">
 
 <head>
-    @include('PUmountain.layouts.head')
+    @include('layouts.head')
     <meta charset="utf-8">
-    <script src="https://bakerychu.ddns.net/PUmountain/bootstrap-input-spinner-master/src/input-spinner.js"></script>
+    <script src="/PUmountain/bootstrap-input-spinner-master/src/input-spinner.js"></script>
     <script>
         $(function() {
             $("input[type='number']").inputSpinner();
@@ -23,25 +23,11 @@
         <img src="{{ asset('loading.gif') }}" class="img-responsive">
     </div>
 
-    @php
-        $userid = Session::get('userid');
-    @endphp
     <div class="PUcontainer ">
         <header class="PUnavheader">
 
-            @include('PUmountain.layouts.navbar')
-            @if (Session::has('selectmessage'))
-                <div class="alert alert-success animate__animated animate__bounce alertsize" style="z-index: 5;" role="alert" id="success_alert">
-                    <p class="alerttext userfontfamily3">{{ session('selectmessage') }}</p>
-                </div>
-            @endif
-            <script type="text/javascript">
-                window.setTimeout(function() {
-                    $('#success_alert').alert('close');
-                }, 2000);
-
-            </script>
-
+            @include('layouts.navbar')
+            @include('layouts.alert')
             <div class='PUprofile'>
                 <div class="row justify-content-center align-items-center">
                     <div class="col align-self-center">
@@ -51,17 +37,17 @@
                             <div class="card-header opwhite" style="text-align: center;padding: 8px;">
 
                                 <div class="" style="display:inline-block;">
-                                    <a href="https://bakerychu.ddns.net/PUmountain/borrow/cart" style="display:block;position:relative;" onclick="do_click()">
-                                        <img src="https://bakerychu.ddns.net/PUmountain/picture/PUmountain/shopping-cart.png" style="width: 35px;">
-                                        <div class="nav-counter">{{ Cart::session($userid)->getContent()->count() }}
+                                    <a href="/PUmountain/borrow/cart" style="display:block;position:relative;" onclick="do_click()">
+                                        <img src="/PUmountain/picture/material/shopping-cart.png" style="width: 35px;">
+                                        <div class="nav-counter">{{ Cart::session(Auth::user()->id)->getContent()->count() }}
                                         </div>
                                     </a>
                                 </div>
                                 <p class="userfontfamily2 tooltitle ">登山社器材借用系統</p>
                                 <div class="" style="display:inline-block;">
-                                    <a href="https://bakerychu.ddns.net/PUmountain/borrow/cart" style="display:block;position:relative;" onclick="do_click()">
-                                        <img src="https://bakerychu.ddns.net/PUmountain/picture/PUmountain/shopping-cart.png" style="width: 35px;">
-                                        <div class="nav-counter">{{ Cart::session($userid)->getContent()->count() }}
+                                    <a href="/PUmountain/borrow/cart" style="display:block;position:relative;" onclick="do_click()">
+                                        <img src="/PUmountain/picture/material/shopping-cart.png" style="width: 35px;">
+                                        <div class="nav-counter">{{ Cart::session(Auth::user()->id)->getContent()->count() }}
                                         </div>
                                     </a>
                                 </div>
@@ -74,34 +60,29 @@
                                         <div class="row">
                                             <div class="col-6 col-sm-12 btn-group-vertical" style="padding: 0">
                                                 <input type="button" class="btn btn-secondary" value="睡墊"
-                                                    onclick="location.href='https://bakerychu.ddns.net/PUmountain/borrow/mat'">
+                                                    onclick="location.href='{{route('borrow.article',array('mat'))}}'">
                                                 <input type="button" class="btn btn-secondary" value="睡袋"
-                                                    onclick="location.href='https://bakerychu.ddns.net/PUmountain/borrow/bag'">
+                                                    onclick="location.href='{{route('borrow.article',array('bag'))}}'">
 
                                             </div>
                                             <div class="col-6 col-sm-12 btn-group-vertical" style="padding: 0">
                                                 <input type="button" class="btn btn-secondary" value="大背包"
-                                                    onclick="location.href='https://bakerychu.ddns.net/PUmountain/borrow/backpack'">
+                                                    onclick="location.href='{{route('borrow.article',array('backpack'))}}'">
                                                 <input type="button" class="btn btn-secondary" value="帳篷"
-                                                    onclick="location.href='https://bakerychu.ddns.net/PUmountain/borrow/camp'">
+                                                    onclick="location.href='{{route('borrow.article',array('camp'))}}'">
                                             </div>
                                             <div class="col-6 col-sm-12 btn-group-vertical" style="padding: 0">
                                                 <input type="button" class="btn btn-secondary" value="爐頭"
-                                                    onclick="location.href='https://bakerychu.ddns.net/PUmountain/borrow/burner'">
+                                                    onclick="location.href='{{route('borrow.article',array('burner'))}}'">
                                                 <input type="button" class="btn btn-secondary" value="其他"
-                                                    onclick="location.href='https://bakerychu.ddns.net/PUmountain/borrow/other'">
+                                                    onclick="location.href='{{route('borrow.article',array('other'))}}'">
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="col-sm-9 col-12" style="background-color:#f1f2f4">
 
-                                        @yield('mat')
-                                        @yield('bag')
-                                        @yield('backpack')
-                                        @yield('burner')
-                                        @yield('camp')
-                                        @yield('other')
+                                        @yield('ArticleShow')
                                     </div>
                                 </div>
                             </div>
@@ -115,11 +96,11 @@
 
     </div>
 
-    @if (Cart::session($userid)
+    @if (Cart::session(Auth::user()->id)
         ->getContent()
         ->count())
         <div>
-            <input type="button" class="seecart " value="前往借用~" onclick="do_click();location.href='https://bakerychu.ddns.net/PUmountain/borrow/cart'" >
+            <input type="button" class="seecart " value="前往借用~" onclick="do_click();location.href='{{route('borrow.cart')}}'" >
         </div>
     @endif
     <div style="height: 100px;">
