@@ -101,7 +101,8 @@ return [
     ],
     'nickname.max'=>'名子最大長度為:max位',
     'account.max'=>'帳號最大長度為:max位',
-    'contactEmail.max'=>'信箱最大長度為:max位',
+    'contact_email.max'=>'信箱最大長度為:max位',
+    'contact_line.max'=>'LINE最大長度為:max位',
     'account.unique' =>'帳號已被使用過!',
 
     'newnickname.max'=>'名子最大長度為:max位',

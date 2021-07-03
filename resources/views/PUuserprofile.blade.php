@@ -34,17 +34,17 @@
                         <div class="card PUcard border-w-6 " id="usercardstyle">
 
                             <div class="card-header ">
-                                <p class="userfontfamily2 loginsize">{{Auth::user()->user_nickname}}</p>
+                                <p class="userfontfamily2 loginsize">{{Auth::user()->nickname}}</p>
                             </div>
                             <div class="row ">
                                 <div class="col text-center" style="margin-top: 25px;">
-                                    <img src=" {{asset("uploads/userpic/".Auth::user()->user_picture)}} "
+                                    <img src=" {{asset("uploads/userpic/".Auth::user()->picture)}} "
                                         class="card-img-top userpicture" alt="似乎無法載入呢!">
                                 </div>
                             </div>
                             <div class="card-body ">
 
-                                @if(Auth::user()->user_admin==1)
+                                @if(Auth::user()->is_admin==1)
                                 <div class="row">
                                     <div class="col text-center">
                                         <button 

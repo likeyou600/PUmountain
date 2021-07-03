@@ -25,9 +25,9 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                             style="color: black;margin-right: 10px;">
-                            <img src="{{asset("uploads/userpic/".Auth::user()->user_picture)}}"
+                            <img src="{{asset("uploads/userpic/".Auth::user()->picture)}}"
                                 style="border-radius: 50%; width: 32px; height: 32px;">
-                            {{Auth::user()->user_nickname }}
+                            {{Auth::user()->nickname }}
                         </a>
                         <div class="dropdown-menu animate__animated animate__bounceIn animate__faster "
                             aria-labelledby="navbarDropdown" style="min-width: 6.5rem;">

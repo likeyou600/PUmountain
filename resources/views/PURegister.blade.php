@@ -55,9 +55,9 @@
                                         <div class="col">
                                             <div class="form-group">
                                                 <label for="text" class="userfontfamily3 logintext">信箱</label>
-                                                <input type="email" name="contactEmail" id="contactEmail"
+                                                <input type="email" name="contact_email" id="contact_email"
                                                     placeholder="請輸入能接收郵件的信箱~" required="required"
-                                                    style="ime-mode:disabled" value="{{ old('contactEmail') }}"
+                                                    style="ime-mode:disabled" value="{{ old('contact_email') }}"
                                                     class="form-control PUboxshadow form-control-lg opwhite">
                                             </div>
                                         </div>
@@ -68,8 +68,8 @@
                                             <div class="form-group">
                                                 <label for="text" class="userfontfamily3 logintext"
                                                     style="margin-left: 22px;">聯絡方式(LINE)</label>
-                                                <input type="text" name="contactLINE" id="contactLINE"
-                                                    value="{{ old('contactLINE') }}" placeholder="請輸入LINE ID~"
+                                                <input type="text" name="contact_line" id="contact_line"
+                                                    value="{{ old('contact_line') }}" placeholder="請輸入LINE ID~"
                                                     required="required" autocomplete="off"
                                                     class="form-control PUboxshadow form-control-lg opwhite">
                                             </div>
