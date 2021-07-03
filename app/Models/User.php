@@ -10,6 +10,15 @@ class User extends Authenticatable
 {
     protected $table = 'users';
     public $timestamps = false;
-    protected $guarded =[];
+    protected $guarded = [];
     use HasFactory;
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+    public function bulletins()
+    {
+        return $this->hasMany(Bulletin::class);
+    }
 }

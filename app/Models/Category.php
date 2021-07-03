@@ -5,9 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OrdertabItem extends Model
+class Category extends Model
 {
-    protected $table = 'ordertab_items';
+    protected $table = 'categories';
     public $timestamps = false;
+    protected $guarded = [];
     use HasFactory;
+
+    public function items()
+    {
+        return $this->hasMany(Item::class);
+    }
 }
