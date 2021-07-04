@@ -82,7 +82,7 @@
 
                                     <div class="col-sm-9 col-12" style="background-color:#f1f2f4">
 
-                                        @yield('ArticleShow')
+                                        @yield('show')
                                     </div>
                                 </div>
                             </div>
