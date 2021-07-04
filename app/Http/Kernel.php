@@ -21,7 +21,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-    ];
+    ]; //全域使用
 
     /**
      * The application's route middleware groups.
@@ -53,7 +53,10 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \App\Http\Middleware\Authenticate::class,
+        'auth.check' => \App\Http\Middleware\Authenticate::class,
+        'auth.backtoprofile'=> \App\Http\Middleware\BackToProfile::class,
+        'borrow.backtocart'=> \App\Http\Middleware\BackToCart::class,
+        'borrow.backtomyorder'=> \App\Http\Middleware\BackToMyorder::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
