@@ -6,7 +6,6 @@
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <meta charset="utf-8">
-    <script src="/bootstrap-input-spinner-master/src/input-spinner.js"></script>
 
     <script type="text/javascript">
         function do_change() {
@@ -48,17 +47,9 @@
                             <div class="card-body opwhite" style="padding: 0;">
                                 <div class="container">
                                     <div class="row" style="background-color: #f1f2f4;">
-                                        <p class="userfontfamily4">本規則自「靜宜大學-登山社設備器材管理辦法」修正訂定</p>
-                                        <p class="userfontfamily4">一、為健全學生社團發展，提昇社團活動品質與績效，落實社團活動資源有效分配與共享，特訂定本辦法。</p>
-                                        <p class="userfontfamily4">二、為了落實社團活動資源公平分配，每一位社員只能借用個人份的裝備</p>
-                                        <p class="userfontfamily4">三、器材借用時間為14天 不包含器材拿取時間，若逾期歸還兩次者，停止其該學期借用權。</p>
-                                        <p class="userfontfamily4">四、若遇特殊情形欲延長借用時間，請事先與登山社告知情況，器材借出後，不得延長借用時間。</p>
-                                        <p class="userfontfamily4">
-                                            五、借用之器材需妥善使用與保管，若器材因不當使用而損壞，依器材損壞程度賠償。若器材損壞狀況嚴重或遺失，則依市價賠償。</p>
-                                        <p class="userfontfamily4">
-                                            六、拿取器材時，需拍下借用器材之照片，並自行將檔案上傳至本系統。歸還時也必須拍下歸還借用器材之照片，上傳至系統。如故意上傳非器材之照片，停止其該學期借用權。
-                                        </p>
-                                        <p class="userfontfamily4">七、如因社上出隊需要，管理人有權​協調，收回借出之器材。</p>
+                                        @foreach($rules as $rule)
+                                        <p class="userfontfamily4">{{$rule->rule}}</p>
+                                        @endforeach
                                     </div>
 
                                 </div>

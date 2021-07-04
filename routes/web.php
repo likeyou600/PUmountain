@@ -41,13 +41,13 @@ Route::prefix('borrow')->middleware('auth.check')->name('borrow.')->group(functi
 
     Route::get('selectpage/{category}', [ToolController::class, 'article'])->name('article');
 
-    Route::post('addtocart', [ToolController::class, 'AddToCart'])->name('addtocart');
+    Route::post('addtocart', [ToolController::class, 'AddToCart'])->name('addtocart')->middleware('borrow.backtomyorder');
     Route::get('cart', [ToolController::class, 'CartView'])->name('cart');
     
     Route::group(['middleware' => 'borrow.backtocart'], function () {
         Route::post('updatecart', [ToolController::class, 'UpdateCart'])->name('updatecart');
         Route::get('removecart', [ToolController::class, 'RemoveCart'])->name('removecart');
-        Route::view('rule', 'borrow/rule')->name('rule');
+        Route::get('rule', [ToolController::class, 'rule'])->name('rule');
         Route::get('checksend', [ToolController::class, 'checksend'])->name('checksend');
         Route::get('cartstore', [ToolController::class, 'cartstore'])->name('cartstore');
     });
