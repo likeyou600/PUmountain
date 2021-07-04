@@ -196,7 +196,7 @@
 
                                 <div class="row">
                                     <div class="col text-center">
-                                        <button 
+                                        <button onclick="location.href='{{route('borrow.myorder')}}'"
                                             class="profile_button_margin userfontfamily3 normalsize btn butt PUuserbutt boxshadow btn-lg logincolor">
                                             借用情況
                                         </button>
