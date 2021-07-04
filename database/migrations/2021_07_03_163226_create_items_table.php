@@ -15,7 +15,7 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id()->comment("物品ID");
-            $table->foreignId('category_id')->comment("物品ID_外鍵")->constrained('categories')->cascadeOnDelete();
+            $table->foreignId('category_id')->comment("種類ID_外鍵")->constrained('categories')->cascadeOnDelete();
             $table->integer('quantity')->unsigned()->comment("物品數量");
             $table->string('picture',32)->default('default.jpg')->comment("物品照片");
         });

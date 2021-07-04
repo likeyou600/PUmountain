@@ -22,7 +22,7 @@ class CreateOrdersTable extends Migration
 		    $table->date('last_return_date')->nullable()->comment("訂單最晚歸還日期");
 		    $table->date('return_date')->nullable()->comment("訂單實際歸還日期");
 		    $table->tinyInteger('status')->default('2')->comment("2:領取中，1:借用中，0:已歸還，99:取消");
-            $table->text('description')->comment("訂單備註");
+            $table->text('description')->nullable()->comment("訂單備註");
         });
     }
 
