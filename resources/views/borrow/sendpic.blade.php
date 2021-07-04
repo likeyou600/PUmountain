@@ -2,14 +2,12 @@
 <html lang="zh-TW">
 
 <head>
-    @include('PUmountain.layouts.head')
+    @include('layouts.head')
 
     <meta charset="utf-8">
-    <script src="https://bakerychu.ddns.net/bootstrap-input-spinner-master/src/input-spinner.js"></script>
-
     <title>靜宜大學登山社</title>
     <script>
-         function do_click() {
+        function do_click() {
             document.getElementById("loading").style.display = "block";
             document.getElementById("loadingup").style.display = "block";
         }
@@ -21,18 +19,12 @@
     <div id="loading" style="display:none">
         <img src="{{ asset('loading.gif') }}" class="img-responsive">
     </div>
-    @php
-        $userid = Session::get('userid');
-    @endphp
+
     <div class="PUcontainer ">
         <header class="PUnavheader">
 
-            @include('PUmountain.layouts.navbar')
-            @if (Session::has('message'))
-                <div class="alert alert-success animate__animated animate__bounce alertsize" style="z-index: 5;" role="alert" id="success_alert">
-                    <p class="alerttext userfontfamily3">{{ session('message') }}</p>
-                </div>
-            @endif
+            @include('layouts.navbar')
+            @include('layouts.alert')
 
             <div class='PUprofile cartcontainer margintop'>
                 <div class="row justify-content-center align-items-center">
@@ -55,29 +47,31 @@
                             <div class="card-header opwhite" style="text-align: center;padding:
                                     8px;">
                                 <p class="userfontfamily2 " style="font-size: 30px;margin-bottom:0;">
-                                    借用人:{{ Session::get('username') }}
+                                    借用人: {{ Auth::user()->nickname }}
 
                                 </p>
                                 <p class="userfontfamily2 " style="font-size: 30px;margin-bottom:0;">
 
-                                    借用編號:{{ $order_id }}
+                                    借用編號: {{ $order_id }}
                                 </p>
 
-                                <form method="POST" action="https://bakerychu.ddns.net/PUmountain/sendpic/{{ $order_id }}" id="update_orderpic"
-                                    enctype="multipart/form-data">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <form method="POST"
+                                    action="{{route('borrow.sendpic')}}"
+                                    id="update_orderpic" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="order_id" value="{{ $order_id }}">
                                     <div class="form-group">
                                         <label class="btn updatepic" style="background-color: #55c1d2;">
-                                            <input id="orderpic" name="orderpic" style="display:none;" type="file" accept="image/*"
-                                                onchange="loadFile(event)"/>
+                                            <input id="orderpic" name="orderpic" style="display:none;" type="file"
+                                                accept="image/*" onchange="loadFile(event)" />
                                             <i class="fa fa-photo"></i> 上傳圖片
                                         </label>
-                                        <div >
+                                        <div>
                                             <img id="output" style="    width: 40vh;" />
-                                        </div>  
-                                       
-                                            <script>
-                                                var loadFile = function(event) {
+                                        </div>
+
+                                        <script>
+                                            var loadFile = function(event) {
                                                     var output = document.getElementById('output');
                                                     output.src = URL.createObjectURL(event.target.files[0]);
                                                     output.onload = function() {
@@ -85,17 +79,18 @@
                                                     }
                                                 };
 
-                                            </script>
+                                        </script>
                                     </div>
-                            <input type="submit" value="開始借用" class="btn btn-primary addtext userfontfamily2" style="height: 80px;
+                                    <input type="submit" value="開始借用" class="btn btn-primary addtext userfontfamily2"
+                                        style="height: 80px;
                                 font-size: 40px;width: 100%;" onclick="do_click()">
 
-                            </form>
-                        </div>
+                                </form>
+                            </div>
 
+                        </div>
                     </div>
                 </div>
-            </div>
         </header>
 
 
@@ -106,7 +101,7 @@
 
     </div>
 
-    <script src="http://malsup.github.com/jquery.form.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" integrity="sha384-qlmct0AOBiA2VPZkMY3+2WqkHtIQ9lSdAsAn5RUJD/3vA5MKDgSGcdmIv4ycVxyn" crossorigin="anonymous"></script>
 
 
 </body>

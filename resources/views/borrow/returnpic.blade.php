@@ -2,10 +2,9 @@
 <html lang="zh-TW">
 
 <head>
-    @include('PUmountain.layouts.head')
+    @include('layouts.head')
 
     <meta charset="utf-8">
-    <script src="https://bakerychu.ddns.net/bootstrap-input-spinner-master/src/input-spinner.js"></script>
 
     <title>靜宜大學登山社</title>
     <script>
@@ -21,18 +20,12 @@
     <div id="loading" style="display:none">
         <img src="{{ asset('loading.gif') }}" class="img-responsive">
     </div>
-    @php
-        $userid = Session::get('userid');
-    @endphp
+
     <div class="PUcontainer ">
         <header class="PUnavheader">
 
-            @include('PUmountain.layouts.navbar')
-            @if (Session::has('message'))
-                <div class="alert alert-success animate__animated animate__bounce alertsize" style="z-index: 5;" role="alert" id="success_alert">
-                    <p class="alerttext userfontfamily3">{{ session('message') }}</p>
-                </div>
-            @endif
+            @include('layouts.navbar')
+            @include('layouts.alert')
 
             <div class='PUprofile cartcontainer margintop'>
                 <div class="row justify-content-center align-items-center">
@@ -55,25 +48,26 @@
                             <div class="card-header opwhite" style="text-align: center;padding:
                                     8px;">
                                 <p class="userfontfamily2 " style="font-size: 30px;margin-bottom:0;">
-                                    借用人:{{ Session::get('username') }}
+                                    借用人: {{ Auth::user()->nickname }}
 
                                 </p>
                                 <p class="userfontfamily2 " style="font-size: 30px;margin-bottom:0;">
 
-                                    借用編號:{{ $order_id }}
+                                    借用編號: {{ $order_id }}
                                 </p>
 
-                                <form method="POST" action="https://bakerychu.ddns.net/PUmountain/returndb/{{ $order_id }}" id="return_orderpic"
+                                <form method="POST" action="{{route('borrow.sendreturnpic')}}" id="return_orderpic"
                                     enctype="multipart/form-data">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    @csrf
+                                    <input type="hidden" name="order_id" value="{{ $order_id }}">
                                     <div class="form-group">
                                         <label class="btn updatepic" style="background-color: #55c1d2;">
-                                            <input id="returnorderpic" name="returnorderpic" style="display:none;" type="file" accept="image/*"
+                                            <input id="returnpic" name="returnpic" style="display:none;" type="file" accept="image/*"
                                                 onchange="loadFile(event)"/>
                                             <i class="fa fa-photo"></i> 上傳圖片
                                         </label>
                                         <div >
-                                            <img id="output" style="    width: 40vh;" />
+                                            <img id="output" style="width: 40vh;" />
                                         </div>
                                         
                                             <script>
@@ -105,6 +99,9 @@
     <div class="white_mobile">
 
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" integrity="sha384-qlmct0AOBiA2VPZkMY3+2WqkHtIQ9lSdAsAn5RUJD/3vA5MKDgSGcdmIv4ycVxyn" crossorigin="anonymous"></script>
+
 </body>
+
 
 </html>
