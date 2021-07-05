@@ -49,13 +49,13 @@
                                             $order_details=$order->order_details;//詳細訂單資訊
                                             @endphp
                                             @if ($order_status == 2)
-                                            @include('borrow.myorder.retrieve')
+                                            @include('borrow.myorder.waitoget')
 
                                             @elseif ($order_status == 1)
                                             @include('borrow.myorder.using')
 
                                             @elseif ($order_status == 0)
-                                            @include('borrow.myorder.returnback')
+                                            @include('borrow.myorder.returned')
 
                                             @elseif ($order_status == 99)
                                             @include('borrow.myorder.cancle')
