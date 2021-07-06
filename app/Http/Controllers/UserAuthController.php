@@ -17,7 +17,7 @@ class UserAuthController extends Controller
     {
         $validated = $request->validate([
             'nickname' => 'required|max:8',
-            'account' => 'required|alpha_num|unique:users,user_account|max:16',
+            'account' => 'required|alpha_num|unique:users,account|max:16',
             'contact_email' => 'required|email|max:64',
             'contact_line' => 'required|max:32',
         ]);
@@ -61,7 +61,7 @@ class UserAuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('PUmountain')->with('message', '登出成功~');
+        return redirect('/')->with('message', '登出成功~');
     }
     //登出
 
