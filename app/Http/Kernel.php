@@ -55,6 +55,7 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'auth.check' => \App\Http\Middleware\Authenticate::class,
         'auth.backtoprofile'=> \App\Http\Middleware\BackToProfile::class,
+        'auth.admin'=> \App\Http\Middleware\AdminBackTo::class,
         'borrow.backtocart'=> \App\Http\Middleware\BackToCart::class,
         'borrow.backtomyorder'=> \App\Http\Middleware\BackToMyorder::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,

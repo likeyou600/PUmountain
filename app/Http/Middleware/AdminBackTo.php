@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure, Auth;
+use Illuminate\Http\Request;
+
+class AdminBackTo
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     */
+    public function handle(Request $request, Closure $next)
+    {
+        if (Auth::user()) {
+            if (Auth::user()->is_admin == 0) {
+                return redirect('/');
+            }
+        } else {
+            return redirect('/');
+        }
+        return $next($request);
+    }
+}
