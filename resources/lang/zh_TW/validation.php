@@ -112,8 +112,7 @@ return [
     'oldpassword.max'=>'密碼最大長度為:max位',
     'password.max'=>'密碼最大長度為:max位',
     'password.confirmed'=>'新密碼二次確認不匹配',
-    'orderpic.required'=>'記得上傳器材領取照片哦!',
-    'returnpic.required'=>'記得上傳器材歸還照片哦!',
+
 ],
 
 /*
