@@ -62,24 +62,13 @@
                                     <input type="hidden" name="order_id" value="{{ $order_id }}">
                                     <div class="form-group">
                                         <label class="btn updatepic" style="background-color: #55c1d2;">
-                                            <input id="orderpic" name="orderpic" style="display:none;" type="file"
-                                                accept="image/*" onchange="loadFile(event)" />
+                                            <input id="pic" name="pic" style="display:none;" type="file"
+                                                accept="image/* , .heic" />
                                             <i class="fa fa-photo"></i> 上傳圖片
                                         </label>
-                                        <div>
+
                                             <img id="output" style="    width: 40vh;" />
-                                        </div>
-
-                                        <script>
-                                            var loadFile = function(event) {
-                                                    var output = document.getElementById('output');
-                                                    output.src = URL.createObjectURL(event.target.files[0]);
-                                                    output.onload = function() {
-                                                        URL.revokeObjectURL(output.src) // free memory
-                                                    }
-                                                };
-
-                                        </script>
+                                        @include('layouts.imagehandle')
                                     </div>
                                     <input type="submit" value="開始借用" class="btn btn-primary addtext userfontfamily2"
                                         style="height: 80px;

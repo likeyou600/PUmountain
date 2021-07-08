@@ -62,24 +62,14 @@
                                     <input type="hidden" name="order_id" value="{{ $order_id }}">
                                     <div class="form-group">
                                         <label class="btn updatepic" style="background-color: #55c1d2;">
-                                            <input id="returnpic" name="returnpic" style="display:none;" type="file" accept="image/*"
-                                                onchange="loadFile(event)"/>
+                                            <input id="pic" name="pic" style="display:none;" type="file"
+                                            accept="image/* , .heic"/>
                                             <i class="fa fa-photo"></i> 上傳圖片
                                         </label>
                                         <div >
                                             <img id="output" style="width: 40vh;" />
                                         </div>
-                                        
-                                            <script>
-                                                var loadFile = function(event) {
-                                                    var output = document.getElementById('output');
-                                                    output.src = URL.createObjectURL(event.target.files[0]);
-                                                    output.onload = function() {
-                                                        URL.revokeObjectURL(output.src) // free memory
-                                                    }
-                                                };
-
-                                            </script>
+                                        @include('layouts.imagehandle')
                                     </div>
                             <input type="submit" value="歸還器材" class="btn btn-primary addtext userfontfamily2" style="height: 80px;
                                 font-size: 40px;width: 100%;" onclick="do_click()">

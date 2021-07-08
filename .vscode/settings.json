@@ -9,5 +9,6 @@
         "**/bower_components/**",
         "**/.history/**"
     ],
-    "bladeFormatter.format.wrapLineLength": 180
+    "bladeFormatter.format.wrapLineLength": 180,
+    "blade.format.enable": true
 }
