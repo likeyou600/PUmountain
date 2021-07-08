@@ -113,6 +113,8 @@ return [
     'password.max'=>'密碼最大長度為:max位',
     'password.confirmed'=>'新密碼二次確認不匹配',
 
+    'pic.required'=>'請上傳圖片~',
+    'category.min'=>'請選擇種類~',
 ],
 
 /*
