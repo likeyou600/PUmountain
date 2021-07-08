@@ -16,6 +16,8 @@ class CreateCategoriesTable extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id()->comment("種類ID");
             $table->string('category',64)->unique()->comment("種類名稱");
+            $table->string('chinese',64)->comment("中文種類名");
+
         });
     }
 
