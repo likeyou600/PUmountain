@@ -47,7 +47,7 @@
                                 @if(Auth::user()->is_admin==1)
                                 <div class="row">
                                     <div class="col text-center">
-                                        <button 
+                                        <button onclick="location.href='{{route('admin.page')}}'"
                                             class="profile_button_margin userfontfamily3 normalsize btn butt PUuserbutt boxshadow btn-lg logincolor">
                                             管理模式
                                         </button>
@@ -196,7 +196,7 @@
 
                                 <div class="row">
                                     <div class="col text-center">
-                                        <button onclick="location.href='{{route('borrow.myorder')}}'"
+                                        <button onclick="location.href='{{route('borrow.myorder',array('all'))}}'"
                                             class="profile_button_margin userfontfamily3 normalsize btn butt PUuserbutt boxshadow btn-lg logincolor">
                                             借用情況
                                         </button>

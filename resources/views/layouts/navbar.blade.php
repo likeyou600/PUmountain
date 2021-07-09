@@ -37,7 +37,7 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{route('borrow.cart')}}">借物車</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{route('borrow.myorder')}}">借用情況</a>
+                            <a class="dropdown-item" href="{{route('borrow.myorder',array('all'))}}">借用情況</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{route('auth.logout')}}">登出</a>
                         </div>
