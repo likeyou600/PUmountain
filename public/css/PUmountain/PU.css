@@ -267,7 +267,9 @@ input::placeholder {
     background-color: #55c1d2;
     color: #fff;
     border-color: #55c1d2;
-    margin-top: 20px;
+    margin: 20px auto;
+    display: block;
+    width: 18%;
 }
 
 .modal-backdrop {

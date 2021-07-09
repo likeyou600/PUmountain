@@ -51,7 +51,7 @@
                                             font-size: 40px;"
                                 onclick="do_click();location.href='{{route('borrow.rule')}}'">
 
-                            <input type="button" value="刪除借物車" name="delete_button" class="btn btn-primary addtext"
+                            <input type="button" value="清空借物車" name="delete_button" class="btn btn-primary addtext"
                                 style="background-color:#f03535; margin-top: 30px;height: 45px;
                                     font-size: 21px;"
                                 onclick="do_click();location.href='{{route('borrow.removecart')}}'">
