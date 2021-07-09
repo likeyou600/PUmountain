@@ -38,4 +38,15 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function render($request, Throwable $e)
+    {
+        if ($e instanceof \Illuminate\Session\TokenMismatchException) {
+            
+            return redirect('login')->with('message','請重新登入');
+ 
+        }
+
+        return parent::render($request, $e);
+    }
 }
