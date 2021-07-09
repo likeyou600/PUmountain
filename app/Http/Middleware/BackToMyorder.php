@@ -22,7 +22,7 @@ class BackToMyorder
             $count=$orders->count();
             $status = $orders[$count-1]->status;
             if ($status == 1 || $status == 2) {
-                return redirect("borrow/myorder")->with('message', '還有未歸還或尚未領取的東西!');
+                return redirect("borrow/myorder/all")->with('message', '還有未歸還或尚未領取的東西!');
             }
         }
         return $next($request);
