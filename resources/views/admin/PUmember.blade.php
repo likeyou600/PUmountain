@@ -2,7 +2,7 @@
 <html lang="zh-TW">
 
 <head>
-    @include('PUmountain.layouts.head')
+    @include('layouts.head')
     <title>靜宜大學登山社</title>
     <link rel="stylesheet" href="{{ asset('css/PUmountain/table.css') }}">
     <script>
@@ -13,29 +13,19 @@
     </script>
 </head>
 <div class="loadingup" id="loadingup"></div>
-    <div id="loading" style="display:none">
-        <img src="{{ asset('loading.gif') }}" class="img-responsive">
-    </div>
+<div id="loading" style="display:none">
+    <img src="{{ asset('loading.gif') }}" class="img-responsive">
+</div>
+
 <body class="bodyimg" style="height: 770px;">
     <div class="PUcontainer ">
         <header class="PUnavheader">
 
-            @include('PUmountain.layouts.navbar')
+            @include('layouts.navbar')
         </header>
 
         <section id="llooggiinn">
-            @if (Session::has('message'))
-                <div id="useralert" class="alert alert-success animate__animated animate__bounce alertsize" role="alert"
-                    style="margin-bottom: -35px;z-index: 5;">
-                    <p class="alerttext userfontfamily3">{{ Session::get('message') }}</p>
-                </div>
-            @endif
-            <script type="text/javascript">
-                window.setTimeout(function() {
-                    $('#useralert').alert('close');
-                }, 4000);
-
-            </script>
+            @include('layouts.alert')
 
             <div class='container PUprofile'>
                 <div class="row justify-content-center align-items-center">
@@ -48,8 +38,9 @@
                             </div>
 
                             <div class="card-body ">
-                                {{ $userdata->links("pagination::bootstrap-4") }}
-                                <table class="table table-striped rwd-table" style="background-color: white;">
+                                {{ $users->links("pagination::bootstrap-4") }}
+                                <table class="table table-striped rwd-table" style="background-color: white;"
+                                    id="table">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th scope="col">ID</th>
@@ -62,25 +53,30 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($userdata as $item)
-                                            <tr>
-                                                <td data-th="ID" id="id">{{ $item->id }}</td>
-                                                <td data-th="姓名" id="name">{{ $item->nickname }}</td>
-                                                <td data-th="帳號" id="account">{{ $item->account }}</td>
-                                                <td data-th="密碼" id="password">{{ $item->password }}</td>
-                                                <td data-th="信箱" id="email">{{ $item->contactEmail }}</td>
-                                                <td data-th="Line" id="line">{{ $item->contactLINE }}</td>
-                                                <td data-th="升為管理員" class="change">
-                                                    @if ($item->admin == 0)
-                                                        <input type="button" value="升為管理員" class="btn btn-primary addtext userfontfamily2 "
-                                                            onclick="do_click();location.href='/PUmountain/admin/changetoadmin/{{ $item->id }}'">
-                                                </td>
+                                        @foreach ($users as $user)
+                                        <tr>
+                                            <td data-th="ID" id="id">{{ $user->id }}</td>
+                                            <td data-th="姓名" id="name">{{ $user->nickname }}</td>
+                                            <td data-th="帳號" id="account">{{ $user->account }}</td>
+                                            <td data-th="密碼" id="password">{{ $user->password }}</td>
+                                            <td data-th="信箱" id="email">{{ $user->contact_email }}</td>
+                                            <td data-th="Line" id="line">{{ $user->contact_line }}</td>
+                                            <td data-th="升為管理員" class="change">
+                                                @if ($user->is_admin == 0)
+                                                <form action="{{route('admin.promotion')}}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $user->id }}">
+                                                    <input type="submit" value="升為管理員"
+                                                        class="btn btn-primary addtext userfontfamily2 "
+                                                        onclick="do_click();">
+                                                </form>
+                                            </td>
 
-                                                
+
                                             @else
-                                                <input type="button" value="已為管理員" style="background-color: red"
-                                                    class="btn btn-primary addtext userfontfamily2 "></td>
-                                        @endif
+                                            <input type="button" value="已為管理員" style="background-color: red"
+                                                class="btn btn-primary addtext userfontfamily2 "></td>
+                                            @endif
                                         </tr>
                                         @endforeach
 
@@ -89,13 +85,34 @@
 
                                     </tbody>
                                 </table>
-                                
+                                <script>
+                                    $('#table').bootstrapTable({
+                                        columns: columns,
+                                        data: getData(),
+                                        classes: "table table-bordered table-striped table-sm table-dark", 
+                                        height:400,
+                                        //******开启搜索框****//
+                                        search:true
+                                        });
+                                </script>
+                                <link href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css"
+                                    rel="stylesheet">
+
+                                <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+                                <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js">
+                                </script>
+                                <script
+                                    src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table-locale-all.min.js">
+                                </script>
+                                <script
+                                    src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/export/bootstrap-table-export.min.js">
+                                </script>
                             </div>
                         </div>
 
                     </div>
                 </div>
-                
+
             </div>
         </section>
     </div>
