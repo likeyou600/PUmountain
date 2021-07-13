@@ -28,7 +28,8 @@
 
             @include('layouts.navbar')
             @include('layouts.alert')
-            <div class='PUprofile'>
+        </header>
+            <div class='container PUprofile mobilemargintop' >
                 <div class="row justify-content-center align-items-center">
                     <div class="col align-self-center">
 
@@ -80,9 +81,10 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-9 col-12" style="background-color:#f1f2f4">
+                                    <div class="col-sm-9 col-12 itempadding" style="background-color:#f1f2f4">
 
                                         @yield('show')
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -91,7 +93,10 @@
                     </div>
                 </div>
             </div>
-        </header>
+            <div style="height: 100px;">
+
+            </div>
+        
 
 
     </div>
@@ -103,9 +108,7 @@
             <input type="button" class="seecart " value="前往借用~" onclick="do_click();location.href='{{route('borrow.cart')}}'" >
         </div>
     @endif
-    <div style="height: 100px;">
-
-    </div>
+    
 </body>
 
 </html>

@@ -1,14 +1,12 @@
 @media only screen and (max-width:576px) {
+    .bodyimg {
+        background: url('../../picture/material/test3.jpg') no-repeat center top fixed;
+        background-size: 435% auto;
+        background-position-x: 55%;
+    }
     .PUtitle {
-        font-size: 28px;
-        font-family: 'Yusei Magic', sans-serif;
-        margin-bottom: 2px;
-        z-index: -1;
+        width: 63%;
     }
-    .PUprofile {
-        margin-top: 80px;
-    }
-        
     .PUpeople {
         position: absolute;
         width: 100%;
@@ -35,6 +33,7 @@
         height: 90px;
         width: 90px;
         outline: none;
+        cursor: pointer;
     }
     .maintenance {
         position: absolute;
@@ -101,12 +100,12 @@
         width: 40px;
         outline: none;
         margin: 0 5px 0 5px;
+        cursor: pointer;
     }
     .tooltitle {
         font-size: 24px;
         margin-bottom: 0;
-        display:inline-block;
-
+        display: inline-block;
     }
     .PUcardbody {
         padding: 0.5rem;
@@ -129,15 +128,15 @@
     .phoneborrow {
         padding: 5px;
     }
-    .seecart{
+    .seecart {
         position: fixed;
         bottom: 0px;
         background: #F19483;
-        z-index: 1;
+        z-index: 4;
         border-top-right-radius: 30px;
         border-top-left-radius: 30px;
         font-size: 30px;
-        width:100%;
+        width: 100%;
         font-family: 'Yusei Magic', sans-serif;
         border: none;
         outline: none;
@@ -158,23 +157,86 @@
         background: #e23442;
         border-radius: 11px;
     }
-    .margintop{
+    .margintop {
         margin-top: 70px;
     }
-    .filefont{
+    .filefont {
         font-size: 16px;
-    margin-bottom: 0;
-    display: inline-block;
+        margin-bottom: 0;
+        display: inline-block;
     }
     .orderdivider {
         background-color: #FB966E;
         height: 5px;
-        margin: 15px -5px;
+        margin: 15px 3px;
     }
-    .PUpicsli{
-        z-index: 5;
+    .PUpicsli {
+        opacity: 0.8;
     }
-    .borrowimg{
+    .borrowimg {
         width: 250px;
+    }
+    .PUbigtitle {
+        display: none;
+    }
+    .form-grop {
+        margin-bottom: 6px!important;
+    }
+    .card-body {
+        padding: 10px!important;
+    }
+    .card-header {
+        padding: 0!important;
+    }
+    .form-group {
+        margin-bottom: 6px!important;
+    }
+    .logi_regis_button_top {
+        margin: 60px 0 0 0;
+    }
+    .navuserpic {
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+    }
+    .navpic {
+        background-color: #c6ffe6;
+        width: 55px;
+        border-radius: 45%;
+        height: 36px;
+    }
+    .fa-2x {
+        font-size: 1em!important;
+    }
+    .mobilemargintop {
+        margin-top: 60px;
+    }
+    .custumdrop {
+        min-width: 150px!important;
+        position: absolute!important;
+        text-align: center;
+        font-size: 17px;
+    }
+    .alertsize {
+        z-index: 99;
+        position: absolute;
+        width: 50%;
+        left: 0;
+        right: 0;
+        margin: auto;
+        opacity: 0.9;
+    }
+    .rulebottom {
+        height: 1000px;
+    }
+    .showorderpic {
+        width: 90%;
+    }
+    .detailpadding {
+        padding: 5px 20px!important;
+    }
+    #llooggiinn {
+        margin-top: 30px;
+        position: relative;
     }
 }

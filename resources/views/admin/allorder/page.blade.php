@@ -3,11 +3,12 @@
 
 <head>
     @include('layouts.head')
+    <script src="/PUmountain/js/slidetoggle.js"></script>
     <meta charset="utf-8">
     <title>靜宜大學登山社</title>
 </head>
 
-<body class="bodyimg" style="height: 770px;">
+<body class="bodyimg" >
 
     <div class="PUcontainer ">
         <div class="loadingup" id="loadingup"></div>
@@ -18,7 +19,8 @@
 
             @include('layouts.navbar')
             @include('layouts.alert')
-            <div class='PUprofile'>
+        </header>
+            <div class='container PUprofile'>
                 <div class="row justify-content-center align-items-center">
                     <div class="col align-self-center">
 
@@ -65,6 +67,7 @@
 
                                     <div class="col-sm-9 col-12" style="background-color:#f1f2f4">
                                         <div class="container">
+                                            {{ $orders->links("pagination::bootstrap-4") }}
                                             <div class="row" style="background-color: #f1f2f4;">
                                                 <div class="col text-center pointimagestyle phoneborrow">
                                                     @foreach ($orders as $order)
@@ -75,6 +78,8 @@
                                                     $order_borrowdate = $order->borrow_date;
                                                     $order_lastreturndate =$order->last_return_date;
                                                     $order_returndate=$order->return_date;
+                                                    $order_pic=$order->pic_borrow;
+                                                    $order_returnpic=$order->pic_return;
                                                     $today = date('Y-m-d');
                                                     $day = (strtotime($order_lastreturndate) - strtotime($today)) / (60
                                                     *
@@ -130,7 +135,7 @@
                     </div>
                 </div>
             </div>
-        </header>
+   
 
 
     </div>

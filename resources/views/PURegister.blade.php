@@ -6,7 +6,7 @@
     <title>靜宜大學登山社</title>
 </head>
 
-<body class="bodyimg" style="height: 770px;overflow: hidden;">
+<body class="bodyimg" style="height:100%">
     <div class="PUcontainer ">
         <header class="PUnavheader">
             @include('layouts.navbar')
@@ -14,10 +14,10 @@
 
         <section id="llooggiinn">
             @include('layouts.alert')
-            <div class='container' style="margin-top: 15px;">
+            <div class='container login'>
 
                 <div class="row justify-content-center align-items-center">
-                    <div class="col col-sm-8 align-self-center">
+                    <div class="col col-sm-6 align-self-center">
                         <div class="card PUcard  border-w-6">
                             <div class="card-header ">
                                 <p class="userfontfamily1 loginsize">Register</p>

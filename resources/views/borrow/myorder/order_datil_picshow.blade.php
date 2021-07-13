@@ -1,5 +1,5 @@
-<div class="card-body opwhite" style=" padding: 0;">
-    <div class="container">
+<div class="card-body opwhite detailpadding">
+
         <div class="row">
             @foreach($order_details as $order_detail)
             @php
@@ -11,7 +11,7 @@
             @endphp
 
             <div class="col-sm-3 col-6 text-center pointimagestyle phoneborrow">
-                <div class="card PUcardtop" style="    margin-bottom: 10px;">
+                <div class="card">
                     <img src="/PUmountain/picture/borrow/{{ $category }}/{{ $pic }}.jpg" class="card-img-top">
                     <p class="userfontfamily2 tooltitle">數量:
                         {{ $items_quantity }}</p>
@@ -21,5 +21,5 @@
             @endforeach
 
         </div>
-    </div>
+
 </div>

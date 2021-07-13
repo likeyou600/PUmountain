@@ -17,21 +17,21 @@
     <img src="{{ asset('loading.gif') }}" class="img-responsive">
 </div>
 
-<body class="bodyimg" style="height: 770px;">
+<body class="bodyimg" >
     <div class="PUcontainer ">
         <header class="PUnavheader">
 
             @include('layouts.navbar')
         </header>
 
-        <section id="llooggiinn">
+        <section id="" class="mobilemargintop">
             @include('layouts.alert')
 
             <div class='container PUprofile'>
                 <div class="row justify-content-center align-items-center">
                     <div class="col align-self-center">
 
-                        <div class="card border-w-6 " id="usercardstyle" style="background-color: darkseagreen;">
+                        <div class="card border-w-6 " id="usercardstyle" style="    background-color: #c2deea;">
 
                             <div class="card-header ">
                                 <p class="userfontfamily2 loginsize">社員管理</p>
@@ -85,28 +85,8 @@
 
                                     </tbody>
                                 </table>
-                                <script>
-                                    $('#table').bootstrapTable({
-                                        columns: columns,
-                                        data: getData(),
-                                        classes: "table table-bordered table-striped table-sm table-dark", 
-                                        height:400,
-                                        //******开启搜索框****//
-                                        search:true
-                                        });
-                                </script>
-                                <link href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css"
-                                    rel="stylesheet">
-
-                                <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
-                                <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js">
-                                </script>
-                                <script
-                                    src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table-locale-all.min.js">
-                                </script>
-                                <script
-                                    src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/export/bootstrap-table-export.min.js">
-                                </script>
+                                
+                              
                             </div>
                         </div>
 

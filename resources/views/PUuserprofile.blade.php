@@ -23,13 +23,13 @@
             @include('layouts.navbar')
         </header>
 
-        <section id="llooggiinn">
+        <section id="" class="mobilemargintop">
 
             @include('layouts.alert')
 
             <div class='container PUprofile'>
                 <div class="row justify-content-center align-items-center">
-                    <div class="col align-self-center">
+                    <div class="col col-sm-8 align-self-center">
 
                         <div class="card PUcard border-w-6 " id="usercardstyle">
 
@@ -59,20 +59,18 @@
                                     <div class="col text-center">
                                         <button
                                             class="profile_button_margin userfontfamily3 normalsize btn butt PUuserbutt boxshadow btn-lg  logincolor"
-                                            data-toggle="modal" data-target="#changennicknamemodal">
+                                            data-bs-toggle="modal" data-bs-target="#changennicknamemodal">
                                             修改名子
                                         </button>
                                         <div class="modal fade" id="changennicknamemodal" tabindex="-1" role="dialog"
-                                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content" style="border-radius: 2.3rem;">
                                                     <div class="modal-header">
                                                         <p class="modal-title userfontfamily3 changename_modalsize"
                                                             id="exampleModalCenterTitle">修改名子</p>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close" id="btnResetForm">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
+                                                        <button type="button"  class="btn-close"
+                                                            data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <form method="POST" action="{{route('auth.change_nickname')}}"
@@ -85,64 +83,71 @@
                                                                     placeholder="請用本名歐~" name="newnickname">
 
                                                             </div>
-                                                        
+
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="submit"
-                                                        class="btn btn-primary userfontfamily3">確定更改</button>
+                                                            class="btn btn-primary userfontfamily3">確定更改</button>
                                                         </form>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        @include('layouts.resetform')
                                     </div>
+                                    
                                 </div>
 
                                 <div class="row">
                                     <div class="col text-center">
                                         <button
                                             class="profile_button_margin userfontfamily3 normalsize btn butt PUuserbutt boxshadow btn-lg  logincolor"
-                                            data-toggle="modal" data-target="#changenpicturemodal">
+                                            data-bs-toggle="modal" data-bs-target="#changenpicturemodal">
                                             修改頭貼
                                         </button>
-                                        <div class="modal fade" id="changenpicturemodal" tabindex="-1" role="dialog"
-                                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true"
-                                            style="z-index: 200">
+
+
+
+                                        <div class="modal fade" id="changenpicturemodal" tabindex="-1"
+                                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content" style="border-radius: 2.3rem;">
                                                     <div class="modal-header">
                                                         <p class="modal-title userfontfamily3 changename_modalsize"
                                                             id="exampleModalCenterTitle">修改頭貼</p>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close" id="btnResetForm">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
+                                                        <button type="button"  class="btn-close"
+                                                            data-bs-dismiss="modal" aria-label="Close"></button>
+
                                                     </div>
                                                     <div class="modal-body">
                                                         <form method="POST" action="{{route('auth.change_picture')}}"
                                                             id="change_profilepicture" enctype="multipart/form-data">
                                                             <input type="hidden" name="_token"
                                                                 value="{{ csrf_token() }}">
+
                                                             <div class="form-group">
-                                                                <div class="custom-file">
-                                                                    <input type="file" class="custom-file-input  "
-                                                                        name="profilepicture" id="profilepicture">
-                                                                    <label class="custom-file-label userfontfamily3"
-                                                                        style="font-size: 21px;"
-                                                                        for="profilepicture">選擇新的頭貼</label>
-                                                                </div>
+                                                                <label class="btn updatepic" style="background-color: #55c1d2;">
+                                                                    <input id="usernewpic" name="usernewpic" style="display:none;" type="file" accept="image/* , .heic" />
+                                                                    <i class="fa fa-photo"></i> 選擇新的頭貼
+                                                                </label>
+                                    
+                                                                <img id="usernewpic_output" style="    width: 40vh;" />
+                                                                <script src="/PUmountain/js/picture.js"></script>
                                                             </div>
-                                                        
+
                                                     </div>
                                                     <div class="modal-footer">
 
                                                         <button type="submit"
-                                                        class="btn btn-primary userfontfamily3">確定更改</button>
-                                                    </form>
+                                                            class="btn btn-primary userfontfamily3">確定更改</button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
+                                            @include('layouts.resetform')
                                         </div>
+
+
                                     </div>
                                 </div>
 
@@ -150,24 +155,22 @@
                                     <div class="col text-center">
                                         <button
                                             class="profile_button_margin userfontfamily3 normalsize btn butt PUuserbutt boxshadow btn-lg  logincolor"
-                                            data-toggle="modal" data-target="#changenpasswordmodal">
+                                            data-bs-toggle="modal" data-bs-target="#changenpasswordmodal">
                                             修改密碼
                                         </button>
                                         <div class="modal fade" id="changenpasswordmodal" tabindex="-1" role="dialog"
-                                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content" style="border-radius: 2.3rem;">
                                                     <div class="modal-header">
                                                         <p class="modal-title userfontfamily3 changename_modalsize"
                                                             id="exampleModalCenterTitle">修改密碼</p>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close" id="btnResetForm">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
+                                                        <button type="button"  class="btn-close"
+                                                            data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <form method="POST" action="{{route('auth.change_password')}}"
-                                                            id="changenpasswordmodal1" enctype="multipart/form-data">
+                                                            id="changenpassword" enctype="multipart/form-data">
                                                             <input type="hidden" name="_token"
                                                                 value="{{ csrf_token() }}">
                                                             <div class="form-group">
@@ -190,16 +193,8 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @include('layouts.resetform')
                                         </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col text-center">
-                                        <button onclick="location.href='{{route('borrow.myorder',array('all'))}}'"
-                                            class="profile_button_margin userfontfamily3 normalsize btn butt PUuserbutt boxshadow btn-lg logincolor">
-                                            借用情況
-                                        </button>
                                     </div>
                                 </div>
 
@@ -220,19 +215,6 @@
         </section>
     </div>
 
-    {{-- 圖片更換js --}}
-    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
-    <script>
-        bsCustomFileInput.init()
-        var btn = document.getElementById('btnResetForm')
-        var formpro = document.getElementById('change_profilepicture')
-
-        btn.addEventListener('click', function() {
-            formpro.reset()
-        })
-
-    </script>
-    {{-- 圖片更換js end --}}
 
     <div style="height: 100px;">
 

@@ -14,7 +14,7 @@
     </script>
 </head>
 
-<body class="bodyimg" style="height: 770px;">
+<body class="bodyimg" >
     <div class="loadingup" id="loadingup"></div>
     <div id="loading" style="display:none">
         <img src="{{ asset('loading.gif') }}" class="img-responsive">
@@ -26,7 +26,7 @@
             @include('layouts.navbar')
             @include('layouts.alert')
 
-            <div class='PUprofile cartcontainer margintop'>
+            <div class='PUprofile cartcontainer mobilemargintop'>
                 <div class="row justify-content-center align-items-center">
                     <div class="col align-self-center">
 
@@ -67,8 +67,10 @@
                                             <i class="fa fa-photo"></i> 上傳圖片
                                         </label>
 
-                                            <img id="output" style="    width: 40vh;" />
-                                        @include('layouts.imagehandle')
+                                            <img id="output" style="    width: 40vh; 
+                                            margin-bottom: 20px;
+                                        " />
+                                            <script src="/PUmountain/js/picture.js"></script>
                                     </div>
                                     <input type="submit" value="開始借用" class="btn btn-primary addtext userfontfamily2"
                                         style="height: 80px;

@@ -6,19 +6,18 @@
     <title>靜宜大學登山社</title>
 </head>
 
-<body class="bodyimg" style="height: 770px;overflow: hidden;">
-    <div class="PUcontainer ">
+<body class="bodyimg" style="height: 100%;">
         <header class="PUnavheader">
 
             @include('layouts.navbar')
+            @include('layouts.alert')
         </header>
 
         <section id="llooggiinn">
-            @include('layouts.alert')
-            <div class='container my-5'>
+            <div class='container login'>
 
                 <div class="row justify-content-center align-items-center">
-                    <div class="col col-sm-8 align-self-center">
+                    <div class="col col-sm-6 align-self-center">
                         <div class="card PUcard border-w-6" style="    z-index: 10;">
                             <div class="card-header ">
                                 <p class="userfontfamily1 loginsize">Login</p>
@@ -44,7 +43,7 @@
                                             <div class="form-group">
                                                 <label for="password" class="userfontfamily3 logintext">密碼</label>
                                                 <input type="password" name="password" id="password"
-                                                    placeholder="請向管理員取得密碼  或  輸入已知密碼~" required="required"
+                                                    placeholder="請向社長或幹部取得密碼  或  輸入已知密碼~" required="required"
                                                     class="form-control PUboxshadow form-control-lg opwhite">
                                             </div>
                                         </div>
@@ -67,8 +66,7 @@
                         </div>
                     </div>
         </section>
-    </div>
-    <img src="{{asset('picture/PUmountain/down.png')}}" class="PUpeople">
+
 </body>
 
 </html>

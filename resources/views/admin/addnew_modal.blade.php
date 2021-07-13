@@ -1,15 +1,14 @@
 <div class="modal fade" id="addnewmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
+    aria-hidden="true " data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content" style="border-radius: 2.3rem;">
             <div class="modal-header">
                 <p class="modal-title userfontfamily3 changename_modalsize" id="exampleModalCenterTitle">添加新裝備</p>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnResetForm">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{route('admin.newequipment')}}" enctype="multipart/form-data">
+                <form method="POST" action="{{route('admin.newequipment')}}" enctype="multipart/form-data" id="addnew">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
 
@@ -43,4 +42,6 @@
             </div>
         </div>
     </div>
+    @include('layouts.resetform')
+
 </div>

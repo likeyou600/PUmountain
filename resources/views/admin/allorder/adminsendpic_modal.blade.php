@@ -1,12 +1,11 @@
 <div class="modal fade" id="adminsendpicmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
+    aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content" style="border-radius: 2.3rem;">
             <div class="modal-header">
                 <p class="modal-title userfontfamily3 changename_modalsize" id="exampleModalCenterTitle">上傳照片</p>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnResetForm">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                aria-label="Close"></button>
             </div>
             <div class="modeal_body">
                 <div class="card-header opwhite" style="text-align: center;padding:
@@ -17,7 +16,7 @@
                     <p class="userfontfamily2 " style="font-size: 30px;margin-bottom:0;" id="show_order_id">
                     </p>
 
-                    <form method="POST" action="{{route('admin.helpborrow')}}" enctype="multipart/form-data">
+                    <form method="POST" action="{{route('admin.helpborrow')}}" enctype="multipart/form-data" id="adminsendpic">
                         @csrf
                         <input type="hidden" name="order_id" id="order_id">
                         <div class="form-group">
@@ -36,7 +35,6 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <input type="submit" value="管理代傳圖片" class="btn btn-primary addtext userfontfamily2" style="height: 80px;
             font-size: 40px;width: 100%;" onclick="do_click()">
                
@@ -44,4 +42,6 @@
         </form>
         </div>
     </div>
+    @include('layouts.resetform')
+
 </div>

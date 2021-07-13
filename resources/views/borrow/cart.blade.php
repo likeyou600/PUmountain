@@ -17,7 +17,7 @@
     <title>靜宜大學登山社</title>
 </head>
 
-<body class="bodyimg" style="height: 770px;">
+<body class="bodyimg" >
     <div class="loadingup" id="loadingup"></div>
     <div id="loading" style="display:none">
         <img src="{{ asset('loading.gif') }}" class="img-responsive">
@@ -27,7 +27,8 @@
 
             @include('layouts.navbar')
             @include('layouts.alert')
-            <div class='PUprofile cartcontainer margintop'>
+        </header>
+            <div class='container PUprofile cartcontainer mobilemargintop'>
                 <div class="row justify-content-center align-items-center">
                     <div class="col align-self-center">
 
@@ -94,10 +95,10 @@
                                                         <div class="row" style="display: inline-block;">
                                                             <input type="submit" value="刪除" name="delete_button"
                                                                 class="btn btn-primary addtext"
-                                                                style="background-color:#f03535" onclick="do_click()">
+                                                                style="background-color:#f03535;    width: 90%; margin-bottom:5px;" onclick="do_click()">
                                                             <input type="submit" value="更新物品數量"
                                                                 class="btn btn-primary addtext" name="update_button"
-                                                                onclick="do_click()">
+                                                                onclick="do_click()" style="    width: 90%;">
 
                                                         </div>
 
@@ -118,8 +119,10 @@
 
                     </div>
                 </div>
+                <div style="height: 100px;">
+
+                </div>
             </div>
-        </header>
 
 
     </div>

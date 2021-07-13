@@ -28,7 +28,8 @@
 
             @include('layouts.navbar')
             @include('layouts.alert')
-            <div class='PUprofile'>
+        </header>
+            <div class='container PUprofile mobilemargintop'>
                 <div class="row justify-content-center align-items-center">
                     <div class="col align-self-center">
 
@@ -38,7 +39,7 @@
                                 <p class="userfontfamily2 tooltitle ">器材管理系統</p>
                             </div>
                             <div class="card-header opwhite" style="text-align: center;padding: 8px;">
-                                <input type="button" value="新增裝備" data-toggle="modal" data-target="#addnewmodal">
+                                <input type="button" class="btn btn-primary addtext userfontfamily2 btncolor" value="新增裝備" data-bs-toggle="modal" data-bs-target="#addnewmodal">
                                 @include('admin.addnew_modal')
                             </div>
                             <div class="card-body opwhite" style="    padding: 0;">
@@ -67,7 +68,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-9 col-12" style="background-color:#f1f2f4">
+                                    <div class="col-sm-9 col-12 itempadding" style="background-color:#f1f2f4">
                                         <div class="row">
                                             @foreach($items as $item)
                                             <div class="col-sm-3 col-6 text-center pointimagestyle phoneborrow">
@@ -80,7 +81,7 @@
                                                             <input type="hidden" name="id" value="{{ $item->id }}">
                                                             <p class="userfontfamily2 filefont">目前數量:</p>
                                                             <div class="input-group mb-3">
-                                                                <input type="number" class="userfontfamily2 filefont"
+                                                                <input type="number" class="userfontfamily2 filefont inputsni"
                                                                     value="{{ $item->quantity }}" min="0" max="99"
                                                                     step="1" name="new_quantity" />
                                                             </div>
@@ -89,7 +90,7 @@
                                                             <input type="button" value="刪除"
                                                                 class="btn btn-primary addtext"
                                                                 onclick="itemdelete({{$item->id}});"
-                                                                data-toggle="modal" data-target="#deleteitemmodal">
+                                                                data-bs-toggle="modal" data-bs-target="#deleteitemmodal">
                                                         </form>
                                                     </div>
                                                 </div>
@@ -110,7 +111,7 @@
                     </div>
                 </div>
             </div>
-        </header>
+    
 
 
     </div>

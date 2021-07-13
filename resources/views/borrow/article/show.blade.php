@@ -17,12 +17,12 @@
                     <div class="input-group mb-3">
 
 
-                        <input type="number" class="userfontfamily2 filefont" value="0" min="0" max={{ $item->quantity }}
-                            step="1" name="select_quantity" />
+                        <input type="number" class="userfontfamily2 filefont inputsni" value="0" min="0" max={{ $item->quantity }}
+                            step="1" name="select_quantity"  />
 
 
                     </div>
-                    <input type="submit" value="加到借用清單" class="btn btn-primary addtext" onclick="do_click()">
+                    <input type="submit" value="加到借用清單" class="btn btn-primary addtext" onclick="do_click()" >
 
                 </div>
             </form>

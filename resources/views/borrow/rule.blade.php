@@ -25,7 +25,7 @@
     <title>靜宜大學登山社</title>
 </head>
 
-<body class="bodyimg" style="height: 770px;">
+<body class="bodyimg" >
     <div class="loadingup" id="loadingup"></div>
     <div id="loading" style="display:none">
         <img src="{{ asset('loading.gif') }}" class="img-responsive">
@@ -34,7 +34,8 @@
         <header class="PUnavheader">
             @include('layouts.navbar')
             @include('layouts.alert')
-            <div class='PUprofile cartcontainer margintop'>
+            <div class='PUprofile cartcontainer mobilemargintop 
+            rulebottom'>
                 <div class="row justify-content-center align-items-center">
                     <div class="col align-self-center">
 
@@ -44,7 +45,7 @@
                                 <p class="userfontfamily2 tooltitle ">靜宜大學登山社-器材借用規則</p>
                             </div>
 
-                            <div class="card-body opwhite" style="padding: 0;">
+                            <div class="card-body opwhite" style="padding: 10px 0 0 0;">
                                 <div class="container">
                                     <div class="row" style="background-color: #f1f2f4;">
                                         @foreach($rules as $rule)
@@ -60,8 +61,8 @@
                                     借用人:{{ Auth::user()->nickname }}
                                 </p>
                                 <div class="form-group form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1" style="width: 20px;
-                                        height: 40px;" onchange="do_change()">
+                                    <input type="checkbox" class="form-check-input checkbottom" id="exampleCheck1"
+                                        style="" onchange="do_change()">
                                     <label class="form-check-label userfontfamily4"
                                         style="font-size: 30px; margin-left:10px" for="exampleCheck1">我同意此借用規則</label>
                                 </div>

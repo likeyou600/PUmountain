@@ -2,34 +2,24 @@
 <html lang="zh-TW">
 
 <head>
-    @include('PUmountain.layouts.head')
+    @include('layouts.head')
     <title>靜宜大學登山社</title>
 </head>
 
-<body class="bodyimg" style="height: 770px;">
+<body class="bodyimg" >
     <div class="PUcontainer ">
         <header class="PUnavheader">
             
-            @include('PUmountain.layouts.navbar')
+            @include('layouts.navbar')
     </header>
 
-    <section id="llooggiinn">
-        @if (Session::has('userprofile'))
-        <div id="useralert" class="alert alert-success animate__animated animate__bounce alertsize" role="alert"
-            style="margin-bottom: -35px;z-index: 5;">
-            <p class="alerttext userfontfamily3">{{ Session::get('userprofile') }}</p>
-        </div>
-        @endif
-        <script type="text/javascript">
-            window.setTimeout(function() {
-            $('#useralert').alert('close');
-        }, 4000);
-
-        </script>
+    <section id="" class="mobilemargintop">
+        @include('layouts.alert')
+     
 
         <div class='container PUprofile'>
             <div class="row justify-content-center align-items-center">
-                <div class="col align-self-center">
+                <div class="col col-sm-8 align-self-center">
 
                     <div class="card PUcard border-w-6 " id="usercardstyle">
 
@@ -42,7 +32,7 @@
 
                             <div class="row">
                                 <div class="col text-center">
-                                    <button onclick="location.href='/PUmountain/admin/member'"
+                                    <button onclick="location.href='{{route('admin.member')}}'"
                                         class="profile_button_margin userfontfamily3 normalsize btn butt PUuserbutt boxshadow btn-lg logincolor">
                                         社員管理
                                     </button>
@@ -51,27 +41,33 @@
 
                             <div class="row">
                                 <div class="col text-center">
-                                    <button onclick="location.href='/PUmountain/admin/equipment'"
+                                    <button onclick="location.href='{{route('admin.equipment',array('mat'))}}'"
                                         class="profile_button_margin userfontfamily3 normalsize btn butt PUuserbutt boxshadow btn-lg logincolor">
-                                        器材數量
+                                        器材管理
                                     </button>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col text-center">
-                                    <button onclick="location.href='/PUmountain/admin/addnewitem'"
-                                        class="profile_button_margin userfontfamily3 normalsize btn butt PUuserbutt boxshadow btn-lg logincolor">
-                                        添加器材
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col text-center">
-                                    <button onclick="location.href='/PUmountain/admin/allorder/all'"
+                                    <button onclick="location.href='{{route('admin.allorder',array('all'))}}'"
                                         class="profile_button_margin userfontfamily3 normalsize btn butt PUuserbutt boxshadow btn-lg logincolor">
                                         所有社員借用情況
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-center">
+                                    <button onclick="location.href='{{route('admin.prompters')}}'"
+                                        class="profile_button_margin userfontfamily3 normalsize btn butt PUuserbutt boxshadow btn-lg logincolor">
+                                        跑馬燈設置
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-center">
+                                    <button onclick="location.href='{{route('admin.regulation')}}'"
+                                        class="profile_button_margin userfontfamily3 normalsize btn butt PUuserbutt boxshadow btn-lg logincolor">
+                                        借用規則設定
                                     </button>
                                 </div>
                             </div>

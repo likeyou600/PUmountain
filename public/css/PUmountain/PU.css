@@ -1,21 +1,10 @@
 @media only screen and (min-width:576px) {
-    .PUtitle {
-        font-family: 'Yusei Magic', sans-serif;
-        margin-bottom: 0px;
-        position: absolute;
-        left: 0;
-        right: 0;
-        text-align: center;
-        font-size: 40px;
-        z-index: -1;
-    }
     .PUpicsli {
-        top: 50%;
-        left: 4%;
-        transform: translate(0, -50%);
-        z-index: 5;
-        width: 45%;
-        position: absolute;
+        top: 53%;
+        left: 6%;
+        width: 30%;
+        position: absolute!important;
+        opacity: 0.9;
     }
     .PUpeople {
         position: absolute;
@@ -50,6 +39,7 @@
         height: 120px;
         width: 120px;
         outline: none;
+        cursor: pointer;
     }
     .maintenance {
         position: absolute;
@@ -96,8 +86,8 @@
     }
     .contact {
         position: absolute;
-        top: 25%;
-        right: 11%;
+        top: 59%;
+        right: 13%;
         z-index: 3;
     }
     .PUcontact_icon {
@@ -108,6 +98,7 @@
         width: 70px;
         outline: none;
         margin: 0 10px 0 10px;
+        cursor: pointer;
     }
     .pucontainer {
         margin-right: auto;
@@ -131,6 +122,7 @@
         overflow: hidden;
         box-sizing: border-box;
         border: 2px solid #66BAB7;
+        background-color: #fdfef999;
     }
     .marqueefontsize {
         font-size: 23px;
@@ -141,7 +133,7 @@
         position: fixed;
         bottom: 0px;
         background: #F19483;
-        z-index: 1;
+        z-index: 4;
         border-top-right-radius: 30px;
         border-top-left-radius: 30px;
         font-size: 30px;
@@ -185,25 +177,92 @@
     .orderdivider {
         background-color: #FB966E;
         height: 5px;
-        margin: 15px -15px;
+        margin: 15px 0px;
     }
+    .PUbigtitle {
+        position: absolute;
+        width: 21%;
+        top: 8%;
+        left: 11%;
+    }
+    .PUbigtitle:hover {
+        animation: shake 0.3s;
+        animation-iteration-count: infinite;
+    }
+    @keyframes shake {
+        35% {
+            transform: rotate(-1deg);
+        }
+        80% {
+            transform: rotate(1deg);
+        }
+    }
+    .bodyimg {
+        background: url('../../picture/material/test3.jpg') no-repeat center top fixed;
+        background-size: 100% auto;
+    }
+    .logi_regis_button_top {
+        margin: 60px 0;
+    }
+    .PUtitle {
+        width: 20%;
+        margin: 0 auto;
+        position: absolute;
+        left: 0;
+        right: 0;
+    }
+    #llooggiinn {
+        margin-top: 100px;
+        position: relative;
+    }
+    .navpic {
+        position: absolute;
+        right: 60px;
+        top: 5px;
+        background-color: #ffffff;
+        width: 80px;
+        border-radius: 45%;
+    }
+    .navuserpic {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+    }
+    #userprofile {
+        margin-top: 80px;
+    }
+    .alertsize {
+        z-index: 99;
+        position: absolute;
+        width: 50%;
+        left: 0;
+        right: 0;
+        margin: auto;
+        opacity: 0.9;
+    }
+    .itempadding {
+        padding: 0 15px 15px 15px;
+    }
+    .showorderpic {
+        margin: 15px;
+        width: 60%;
+    }
+    .inputsni {
+        padding: 0;
+    }
+    .detailpadding {
+        padding: 20px 20px;
+    }
+}
+
+.btncolor {
+    background-color: orange;
 }
 
 .puimg {
     width: 45px;
     border-radius: 20%;
     outline: none;
-}
-
-.bodyimg {
-    background-image: url('../../picture/material/map.jpg');
-    background-size: cover;
-    width: 100%;
-}
-
-.PUcontainer {
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.3);
 }
 
 .PUcard {
@@ -214,7 +273,7 @@
 }
 
 .PUnavheader {
-    z-index: 1;
+    height: 70px;
     position: relative;
     padding: 0 15px 0 15px;
 }
@@ -228,7 +287,7 @@
 }
 
 .borderradis {
-    border-radius: 5%;
+    border-radius: 10%!important;
 }
 
 .PUcardtop {
@@ -269,11 +328,7 @@ input::placeholder {
     border-color: #55c1d2;
     margin: 20px auto;
     display: block;
-    width: 18%;
-}
-
-.modal-backdrop {
-    z-index: -1;
+    width: 40%;
 }
 
 #loading {
@@ -294,6 +349,27 @@ input::placeholder {
     background-color: rgb(5 5 5 / 60%);
 }
 
-.PUuserbutt {
-    width: 100%;
+.userbutton {
+    background-color: #c3f3cfd9;
+    border-radius: 10px;
+    border-style: dashed;
+    border-width: 2px;
+}
+
+.userbutton:hover {
+    background-color: #91f7abd9;
+}
+
+.alerttext {
+    margin-bottom: 0px;
+    text-align: center;
+    font-size: 20px;
+    transform: scale(1.3, 1);
+}
+
+.checkbottom {
+    width: 30px;
+    height: 30px;
+    float: none!important;
+    margin-top: 10px;
 }

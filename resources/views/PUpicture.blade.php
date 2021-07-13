@@ -16,7 +16,7 @@
     <div id="loading" style="display:none">
         <img src="{{ asset('loading.gif') }}" class="img-responsive">
     </div>
-<body class="bodyimg" style="height: 770px;">
+<body class="bodyimg" >
     <div class="PUcontainer ">
         <header class="PUnavheader">
             
@@ -24,11 +24,11 @@
 
         </header>
 
-        <div class=' PUprofile container'>
+        <div class=' PUprofile container mobilemargintop'>
             <div class="row justify-content-center align-items-center">
                 <div class="col align-self-center">
 
-                    <div class="card border-w-6 " id="usercardstyle" style="    background-color: darkseagreen;">
+                    <div class="card border-w-6 " id="usercardstyle" style="    background-color: #c2deea;">
 
                         <div class="card-header opwhite">
                             <p class="userfontfamily2 loginsize">活動照片</p>
@@ -119,7 +119,9 @@
                 </div>
             </div>
         </div>
-       
+        <div style="height: 100px;">
+
+        </div>
     </div>
 
 

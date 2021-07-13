@@ -15,7 +15,7 @@
    </script>
 </head>
 
-<body class="bodyimg" style="height: 770px;">
+<body class="bodyimg">
     <div class="loadingup" id="loadingup"></div>
     <div id="loading" style="display:none">
         <img src="{{ asset('loading.gif') }}" class="img-responsive">
@@ -27,7 +27,7 @@
             @include('layouts.navbar')
             @include('layouts.alert')
 
-            <div class='PUprofile cartcontainer margintop'>
+            <div class='PUprofile cartcontainer mobilemargintop'>
                 <div class="row justify-content-center align-items-center">
                     <div class="col align-self-center">
 
@@ -66,10 +66,12 @@
                                             accept="image/* , .heic"/>
                                             <i class="fa fa-photo"></i> 上傳圖片
                                         </label>
-                                        <div >
+                                        <div style="
+                                        margin-bottom: 20px;
+                                    ">
                                             <img id="output" style="width: 40vh;" />
                                         </div>
-                                        @include('layouts.imagehandle')
+                                        <script src="/PUmountain/js/picture.js"></script>
                                     </div>
                             <input type="submit" value="歸還器材" class="btn btn-primary addtext userfontfamily2" style="height: 80px;
                                 font-size: 40px;width: 100%;" onclick="do_click()">
