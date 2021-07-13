@@ -52,26 +52,34 @@ Route::prefix('borrow')->middleware('auth.check')->name('borrow.')->group(functi
         Route::get('cartstore', [ToolController::class, 'cartstore'])->name('cartstore');
     });
 
-    Route::get('myorder', [ToolController::class, 'myorder'])->name('myorder');
+    Route::get('myorder/{status}', [ToolController::class, 'myorder'])->name('myorder');
     Route::post('sendpicview', [ToolController::class, 'sendpicview'])->name('sendpicview');
     Route::post('sendpic', [ToolController::class, 'sendpic'])->name('sendpic');
     Route::post('sendreturnpicview', [ToolController::class, 'sendreturnpicview'])->name('sendreturnpicview');
     Route::post('sendreturnpic', [ToolController::class, 'sendreturnpic'])->name('sendreturnpic');
 });
 
+Route::prefix('admin')->middleware('auth.admin')->name('admin.')->group(function () {
+Route::view('/', 'admin/PUadmin')->name('page');
 
-Route::get('/admin', [AdminController::class, 'admin']);
-Route::get('/admin/member', [AdminController::class, 'member']);
-Route::get('/admin/changetoadmin/{id}', [AdminController::class, 'changetoadmin']);
-Route::get('/admin/equipment', [AdminController::class, 'equipment']);
-Route::post('/admin/change_equipment', [AdminController::class, 'change_equipment']);
-Route::get('/admin/addnewitem', [AdminController::class, 'addnewitem']);
-Route::post('/admin/updatenewitem', [AdminController::class, 'updatenewitem']);
+Route::get('member', [AdminController::class, 'member'])->name('member');
+Route::post('promotion', [AdminController::class, 'promotion'])->name('promotion');
 
-Route::get('/admin/adminreturn/{order_id}', [AdminController::class, 'adminreturn']);
+Route::get('regulation', [AdminController::class, 'regulation'])->name('regulation');
+Route::get('prompters', [AdminController::class, 'prompters'])->name('prompters');
+
+Route::get('equipment/{category}', [AdminController::class, 'equipment'])->name('equipment');
+Route::post('change_quantity', [AdminController::class, 'change_quantity'])->name('change_quantity');
+
+Route::view('addnewitem','admin/PUaddnewitem');
+Route::post('newequipment', [AdminController::class, 'newequipment'])->name('newequipment');
+Route::post('deleteequipment', [AdminController::class, 'deleteequipment'])->name('deleteequipment');
+
+Route::get('allorder/{status}', [AdminController::class, 'allorder'])->name('allorder');
+
+Route::post('helpborrow', [AdminController::class, 'helpborrow'])->name('helpborrow');
+Route::post('helpcancle', [AdminController::class, 'helpcancle'])->name('helpcancle');
+Route::post('helpreturn', [AdminController::class, 'helpreturn'])->name('helpreturn');
 
 
-Route::get('/admin/allorder/all', [AdminController::class, 'all']);
-Route::get('/admin/allorder/waitoget', [AdminController::class, 'waitoget']);
-Route::get('/admin/allorder/borrowing', [AdminController::class, 'borrowing']);
-Route::get('/admin/allorder/done', [AdminController::class, 'done']);
+});
