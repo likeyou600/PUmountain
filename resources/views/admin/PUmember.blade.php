@@ -5,19 +5,10 @@
     @include('layouts.head')
     <title>靜宜大學登山社</title>
     <link rel="stylesheet" href="{{ asset('css/PUmountain/table.css') }}">
-    <script>
-        function do_click() {
-            document.getElementById("loading").style.display = "block";
-            document.getElementById("loadingup").style.display = "block";
-        }
-    </script>
 </head>
-<div class="loadingup" id="loadingup"></div>
-<div id="loading" style="display:none">
-    <img src="{{ asset('loading.gif') }}" class="img-responsive">
-</div>
 
 <body class="bodyimg" >
+
     <div class="PUcontainer ">
         <header class="PUnavheader">
 

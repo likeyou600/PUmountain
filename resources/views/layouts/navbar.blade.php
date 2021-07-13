@@ -37,7 +37,7 @@
                 <i class="fas fa-angle-down fa-2x" style="vertical-align: middle;"></i>
             </a>
                 <div class="dropdown-menu dropdown-menu-end animate__animated animate__bounceIn animate__faster custumdrop"
-                    aria-labelledby="navbarDropdown" style="min-width: 6.5rem;">
+                    aria-labelledby="navbarDropdown" style="min-width: 6.5rem; text-align:center">
                     <a class="dropdown-item" href="{{route('profile')}}">儀表板</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{route('borrow.article',array('mat'))}}">器材借用</a>

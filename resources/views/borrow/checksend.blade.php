@@ -9,20 +9,12 @@
         $(function() {
             $("input[type='number']").inputSpinner();
         })
-
-        function do_click() {
-            document.getElementById("loading").style.display = "block";
-            document.getElementById("loadingup").style.display = "block";
-        }
     </script>
     <title>靜宜大學登山社</title>
 </head>
 
 <body class="bodyimg" >
-    <div class="loadingup" id="loadingup"></div>
-    <div id="loading" style="display:none">
-        <img src="{{ asset('loading.gif') }}" class="img-responsive">
-    </div>
+
     <div class="PUcontainer ">
         <header class="PUnavheader">
 

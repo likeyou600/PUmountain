@@ -20,3 +20,10 @@
 </script>
 
 <script src="https://kit.fontawesome.com/bcae93f346.js" crossorigin="anonymous"></script>
+@include('layouts.loading')
+<script>
+    $(window).on('load', function() {
+    $("#loadingup").hide(500);
+    $("#loading").hide(500);
+});
+</script>

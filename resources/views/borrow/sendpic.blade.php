@@ -6,19 +6,9 @@
 
     <meta charset="utf-8">
     <title>靜宜大學登山社</title>
-    <script>
-        function do_click() {
-            document.getElementById("loading").style.display = "block";
-            document.getElementById("loadingup").style.display = "block";
-        }
-    </script>
 </head>
 
 <body class="bodyimg" >
-    <div class="loadingup" id="loadingup"></div>
-    <div id="loading" style="display:none">
-        <img src="{{ asset('loading.gif') }}" class="img-responsive">
-    </div>
 
     <div class="PUcontainer ">
         <header class="PUnavheader">

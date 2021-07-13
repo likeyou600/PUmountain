@@ -6,80 +6,75 @@
     <title>靜宜大學登山社</title>
 </head>
 
-<body class="bodyimg" >
+<body class="bodyimg">
     <div class="PUcontainer ">
         <header class="PUnavheader">
-            
+
             @include('layouts.navbar')
-    </header>
+        </header>
 
-    <section id="" class="mobilemargintop">
-        @include('layouts.alert')
-     
+        <section id="" class="mobilemargintop">
+            @include('layouts.alert')
 
-        <div class='container PUprofile'>
-            <div class="row justify-content-center align-items-center">
-                <div class="col col-sm-8 align-self-center">
 
-                    <div class="card PUcard border-w-6 " id="usercardstyle">
+            <div class='container PUprofile'>
+                <div class="row justify-content-center align-items-center">
+                    <div class="col col-sm-8 align-self-center">
 
-                        <div class="card-header ">
-                            <p class="userfontfamily2 loginsize">管理模式</p>
-                        </div>
-                        
-                        <div class="card-body ">
-                            
+                        <div class="card PUcard border-w-6 " id="usercardstyle">
 
-                            <div class="row">
-                                <div class="col text-center">
-                                    <button onclick="location.href='{{route('admin.member')}}'"
-                                        class="profile_button_margin userfontfamily3 normalsize btn butt PUuserbutt boxshadow btn-lg logincolor">
-                                        社員管理
-                                    </button>
-                                </div>
+                            <div class="card-header ">
+                                <p class="userfontfamily2 loginsize">管理模式</p>
                             </div>
 
-                            <div class="row">
-                                <div class="col text-center">
-                                    <button onclick="location.href='{{route('admin.equipment',array('mat'))}}'"
-                                        class="profile_button_margin userfontfamily3 normalsize btn butt PUuserbutt boxshadow btn-lg logincolor">
-                                        器材管理
-                                    </button>
+                            <div class="card-body ">
+
+
+                                <div class="row">
+                                    <div class="col-6 col-sm-6  text-center">
+                                        <button onclick="location.href='{{route('admin.member')}}'"
+                                            class="profile_button_margin userfontfamily3 normalsize btn butt PUuserbutt boxshadow btn-lg logincolor">
+                                            社員管理
+                                        </button>
+                                    </div>
+                                    <div class="col-6 col-sm-6  text-center">
+                                        <button onclick="location.href='{{route('admin.equipment',array('mat'))}}'"
+                                            class="profile_button_margin userfontfamily3 normalsize btn butt PUuserbutt boxshadow btn-lg logincolor">
+                                            器材管理
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col text-center">
-                                    <button onclick="location.href='{{route('admin.allorder',array('all'))}}'"
-                                        class="profile_button_margin userfontfamily3 normalsize btn butt PUuserbutt boxshadow btn-lg logincolor">
-                                        所有社員借用情況
-                                    </button>
+                                <div class="row">
+                                    <div class="col-6 col-sm-6 text-center">
+                                        <button onclick="location.href='{{route('admin.allorder',array('all'))}}'"
+                                            class="profile_button_margin userfontfamily3 normalsize btn butt PUuserbutt boxshadow btn-lg logincolor">
+                                            所有社員借用情況
+                                        </button>
+                                    </div>
+                                    <div class="col-6 col-sm-6 text-center">
+                                        <button onclick="location.href='{{route('admin.prompters')}}'"
+                                            class="profile_button_margin userfontfamily3 normalsize btn butt PUuserbutt boxshadow btn-lg logincolor">
+                                            首頁標題設置
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col text-center">
-                                    <button onclick="location.href='{{route('admin.prompters')}}'"
-                                        class="profile_button_margin userfontfamily3 normalsize btn butt PUuserbutt boxshadow btn-lg logincolor">
-                                        跑馬燈設置
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col text-center">
-                                    <button onclick="location.href='{{route('admin.regulation')}}'"
-                                        class="profile_button_margin userfontfamily3 normalsize btn butt PUuserbutt boxshadow btn-lg logincolor">
-                                        借用規則設定
-                                    </button>
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <button onclick="location.href='{{route('admin.regulation')}}'"
+                                            class="profile_button_margin userfontfamily3 normalsize btn butt PUuserbutt boxshadow btn-lg logincolor">
+                                            借用規則設定
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
-
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
     </div>
-   
+
 
 </body>
 

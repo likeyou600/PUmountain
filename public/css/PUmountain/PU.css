@@ -253,6 +253,42 @@
     .detailpadding {
         padding: 20px 20px;
     }
+    #loading {
+        position: fixed;
+        top: 18%;
+        left: 0;
+        right: 0;
+        text-align: center;
+        z-index: 100000;
+    }
+    #loading img {
+        width: 20%;
+    }
+    .loadpsize {
+        background-color: #faebd7a6;
+        border-radius: 20px;
+        margin-top: 20px;
+        font-size: 21px;
+        font-family: "Noto Sans TC", sans-serif;
+        font-weight: 600;
+    }
+    .process {
+        width: 30%;
+        margin: 0 auto;
+    }
+    .loadingup {
+        position: fixed;
+        z-index: 99999;
+        width: 100%;
+        height: 100vh;
+        background-color: rgb(5 5 5 / 60%);
+    }
+}
+
+.logintext {
+    font-size: 27px;
+    transform: scale(1.3, 1);
+    margin: 7px 0 0 7px;
 }
 
 .btncolor {
@@ -283,6 +319,10 @@
 }
 
 .PUboxshadow {
+    box-shadow: 10px 10px 0 #33333380;
+}
+
+.boxshadow {
     box-shadow: 10px 10px 0 #33333380;
 }
 
@@ -331,24 +371,6 @@ input::placeholder {
     width: 40%;
 }
 
-#loading {
-    position: fixed;
-    top: 40%;
-    left: 0;
-    right: 0;
-    text-align: center;
-    z-index: 999;
-}
-
-.loadingup {
-    position: fixed;
-    display: none;
-    z-index: 400;
-    width: 100%;
-    height: 100vh;
-    background-color: rgb(5 5 5 / 60%);
-}
-
 .userbutton {
     background-color: #c3f3cfd9;
     border-radius: 10px;
@@ -372,4 +394,8 @@ input::placeholder {
     height: 30px;
     float: none!important;
     margin-top: 10px;
+}
+
+.logincolor {
+    background-color: white;
 }

@@ -21,12 +21,6 @@
     <title>靜宜大學登山社</title>
     <meta name="description"
         content="我們因山而快樂，我們因山而勇敢，我們因山而感動，我們因山而認識。在山上我們擺脫平日的束縛過著自然的生活，呼吸新鮮的空氣，喝著山中的泉水，體驗大地的溫暖，看見壯麗的美景交融，歡迎各位愛冒險與喜歡體驗山林的你們來參加，一起加入我們吧!" />
-    <script>
-        function do_click() {
-            document.getElementById("loading").style.display = "block";
-            document.getElementById("loadingup").style.display = "block";
-        }
-    </script>
     <style>
         @media only screen and (min-width:576px) {
             .PUtitle {
@@ -37,10 +31,6 @@
 </head>
 
 <body class="bodyimg" style="height:100%;" ondragstart="return false" oncontextmenu="return false" onselectstart="return false">
-    <div class="loadingup" id="loadingup"></div>
-    <div id="loading" style="display:none">
-        <img src="{{ asset('loading.gif') }}" class="img-responsive">
-    </div>
     <header class="PUnavheader">
         @include('layouts.navbar')
         @include('layouts.alert')

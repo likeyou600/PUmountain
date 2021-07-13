@@ -11,10 +11,6 @@
 <body class="bodyimg" >
 
     <div class="PUcontainer ">
-        <div class="loadingup" id="loadingup"></div>
-        <div id="loading" style="display:none">
-            <img src="{{ asset('loading.gif') }}" class="img-responsive">
-        </div>
         <header class="PUnavheader">
 
             @include('layouts.navbar')
