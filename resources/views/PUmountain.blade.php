@@ -9,7 +9,7 @@
     <script type="text/javascript" charset="utf-8">
         $(function() {
             $('.flexslider').flexslider({
-                slideshowSpeed: 3000,
+                slideshowSpeed: 5000,
                 animationSpeed: 1000,
                 'directionNav': false,
                 'controlNav': false
@@ -18,9 +18,7 @@
         });
     </script>
 
-    <title>靜宜大學登山社</title>
-    <meta name="description"
-        content="我們因山而快樂，我們因山而勇敢，我們因山而感動，我們因山而認識。在山上我們擺脫平日的束縛過著自然的生活，呼吸新鮮的空氣，喝著山中的泉水，體驗大地的溫暖，看見壯麗的美景交融，歡迎各位愛冒險與喜歡體驗山林的你們來參加，一起加入我們吧!" />
+
     <style>
         @media only screen and (min-width:576px) {
             .PUtitle {
@@ -30,7 +28,7 @@
     </style>
 </head>
 
-<body class="bodyimg" style="height:100%;" ondragstart="return false" oncontextmenu="return false" onselectstart="return false">
+<body class="bodyimg" ondragstart="return false" oncontextmenu="return false" onselectstart="return false">
     <header class="PUnavheader">
         @include('layouts.navbar')
         @include('layouts.alert')
@@ -48,40 +46,73 @@
             </ul>
 
         </div>
-        <div class="maintenance">
-            <input type="button" class="PUpoint" style="background-image: url(picture/material/maintenance.png);"
-                onclick="do_click();location.href='{{route('borrow.article',array('mat'))}}'">
-            <p class="PUtext">器材借用</p>
-        </div>
-        <div class="camera">
-            <input type="button" class="PUpoint" style="background-image: url(picture/material/camera.png);"
-                onclick="do_click();location.href='{{route('PUpicture')}}'">
-            <p class="PUtext">活動照片</p>
+
+        <div class="contact">
+            <p class="contact_text">聯絡我們</p>
+            <input type="button" class="PUcontact_icon" style="background-image: url(picture/material/facebook.png);"
+                onclick="location.href='https://www.facebook.com/PUCC10325'">
+            <input type="button" class="PUcontact_icon" style="background-image: url(picture/material/line.png);"
+                onclick="location.href='https://line.me/ti/p/X0XBiAnjFw'">
         </div>
 
-        <div>
-            <div class="contact">
-                <p class="contact_text">聯絡我們</p>
-                <input type="button" class="PUcontact_icon"
-                    style="background-image: url(picture/material/facebook.png);"
-                    onclick="location.href='https://www.facebook.com/PUCC10325'">
-                <input type="button" class="PUcontact_icon" style="background-image: url(picture/material/line.png);"
-                    onclick="location.href='https://line.me/ti/p/X0XBiAnjFw'">
+        <div class="icon">
+            <div class="maintenance">
+                <input type="button" class="PUpoint" style="background-image: url(picture/material/equitment.png);"
+                    onclick="do_click();location.href='{{route('borrow.article',array('mat'))}}'">
+                <p class="PUtext">器材借用</p>
+            </div>
+            <div class="us">
+                <input type="button" class="PUpoint" style="background-image: url(picture/material/aboutus.png);"
+                    onclick="do_click();location.href='{{route('PUpicture')}}'">
+                <p class="PUtext">關於我們</p>
+            </div>
+            <div class="camera">
+                <input type="button" class="PUpoint" style="background-image: url(picture/material/camera.png);"
+                    onclick="do_click();location.href='{{route('PUpicture')}}'">
+                <p class="PUtext">活動照片</p>
             </div>
         </div>
+
+        <div class="news">
+            <p class="newstext contact_text">最新消息</p>
+            @php
+            $bulletins=App\Models\Bulletin::all()->sortByDesc('id');
+            @endphp
+            <table class="table table-striped">
+                <tr class="datetext" style="color: #000000bf!important;
+                ">
+                    <th>
+                        POSTDATE
+                    </th>
+                    <th>
+                        TITLE
+                    </th>
+                </tr>
+                @foreach ($bulletins as $bulletin)
+                @php
+                 $dt=new DateTime($bulletin->created_at);
+                 $dt=$dt->modify("-1911 year");   
+                 $dt=ltrim($dt->format("Y.m.d"),"0")
+                @endphp
+                <tr>
+                    <td class="datetext">
+                       {{$dt}}
+                    </td>
+                    <td class="contact_text">
+                        <a href="{{route('bulletin.detail',[$bulletin->id])}}" style="color: #000000;    font-family: 'Noto Sans TC', sans-serif;">{{$bulletin->title}}</a>
+                    </td>
+                </tr>
+                @endforeach
+            </table>
+
+        </div>
     </div>
+
 
     {{-- <img src="picture/material/chatbox.png" class="PUchat"> --}}
     {{-- <img src="picture/material/cloud.png" class="PUcloud"> --}}
     {{-- <img src="picture/material/down.png" class="PUpeople"> --}}
     <img src="picture/material/PUM_W.png" class="PUbigtitle">
-
-
-
-
-
-
-
 
 </body>
 

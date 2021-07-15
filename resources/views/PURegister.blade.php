@@ -3,7 +3,6 @@
 
 <head>
     @include('layouts.head')
-    <title>靜宜大學登山社</title>
 </head>
 
 <body class="bodyimg" style="height:100%">
@@ -12,7 +11,7 @@
             @include('layouts.navbar')
         </header>
 
-        <section id="llooggiinn">
+        <section id="register">
             @include('layouts.alert')
             <div class='container login'>
 
@@ -20,7 +19,7 @@
                     <div class="col col-sm-6 align-self-center">
                         <div class="card PUcard  border-w-6">
                             <div class="card-header ">
-                                <p class="userfontfamily1 loginsize">Register</p>
+                                <p class="userfontfamily2 loginsize">Register</p>
                             </div>
 
                             <div class="card-body ">
@@ -67,7 +66,7 @@
                                         <div class="col">
                                             <div class="form-group">
                                                 <label for="text" class="userfontfamily3 logintext"
-                                                    style="margin-left: 22px;">聯絡方式(LINE)</label>
+                                                    >聯絡方式(LINE)</label>
                                                 <input type="text" name="contact_line" id="contact_line"
                                                     value="{{ old('contact_line') }}" placeholder="請輸入LINE ID~"
                                                     required="required" autocomplete="off"

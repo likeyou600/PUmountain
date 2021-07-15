@@ -3,7 +3,6 @@
 
 <head>
     @include('layouts.head')
-    <title>靜宜大學登山社</title>
     <script>
        
     </script>

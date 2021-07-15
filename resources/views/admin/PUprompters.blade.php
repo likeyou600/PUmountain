@@ -3,8 +3,7 @@
 
 <head>
     @include('layouts.head')
-    <title>靜宜大學登山社</title>
-    <link rel="stylesheet" href="{{ asset('css/PUmountain/table.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/PUmountain/table.css') }}">
 
 </head>
 <body class="bodyimg" >

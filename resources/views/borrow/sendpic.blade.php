@@ -5,8 +5,7 @@
     @include('layouts.head')
 
     <meta charset="utf-8">
-    <title>靜宜大學登山社</title>
-</head>
+    </head>
 
 <body class="bodyimg" >
 

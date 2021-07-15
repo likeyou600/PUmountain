@@ -3,7 +3,6 @@
 
 <head>
     @include('layouts.head')
-    <title>靜宜大學登山社</title>
 </head>
 
 <body class="bodyimg" style="height: 100%;">
@@ -20,7 +19,7 @@
                     <div class="col col-sm-6 align-self-center">
                         <div class="card PUcard border-w-6" style="    z-index: 10;">
                             <div class="card-header ">
-                                <p class="userfontfamily1 loginsize">Login</p>
+                                <p class="userfontfamily2 loginsize">Login</p>
                             </div>
 
                             <div class="card-body ">
@@ -43,7 +42,7 @@
                                             <div class="form-group">
                                                 <label for="password" class="userfontfamily3 logintext">密碼</label>
                                                 <input type="password" name="password" id="password"
-                                                    placeholder="請向社長或幹部取得密碼  或  輸入已知密碼~" required="required"
+                                                    placeholder="請向社長或幹部取得密碼" required="required"
                                                     class="form-control PUboxshadow form-control-lg opwhite">
                                             </div>
                                         </div>

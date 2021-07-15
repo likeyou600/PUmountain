@@ -10,8 +10,7 @@
             $("input[type='number']").inputSpinner();
         });
     </script>
-    <title>靜宜大學登山社</title>
-</head>
+    </head>
 
 <body class="bodyimg" style="">
 
@@ -32,7 +31,7 @@
                             </div>
                             <div class="card-header opwhite" style="text-align: center;padding: 8px;">
                                 <input type="button" class="btn btn-primary addtext userfontfamily2 btncolor" value="新增裝備" data-bs-toggle="modal" data-bs-target="#addnewmodal">
-                                @include('admin.addnew_modal')
+                                @include('admin.equipment.addnew_modal')
                             </div>
                             <div class="card-body opwhite" style="    padding: 0;">
                                 <div class="row" style="width: 100%;
@@ -88,7 +87,7 @@
                                                 </div>
                                             </div>
                                             @endforeach
-                                            @include('admin.deleteitem_modal')
+                                            @include('admin.equipment.deleteitem_modal')
                                             <script>
                                                 function itemdelete($id){
                                                     $('#deleteid').val($id);

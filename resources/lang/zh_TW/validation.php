@@ -115,6 +115,8 @@ return [
 
     'pic.required'=>'請上傳圖片~',
     'category.min'=>'請選擇種類~',
+    'title.required'=>'請記得填標題',
+    'content.required'=>'請記得填公告',
 ],
 
 /*

@@ -3,7 +3,6 @@
 
 <head>
     @include('layouts.head')
-    <title>靜宜大學登山社</title>
 </head>
 
 <body class="bodyimg">
@@ -48,7 +47,7 @@
                                     <div class="col-6 col-sm-6 text-center">
                                         <button onclick="location.href='{{route('admin.allorder',array('all'))}}'"
                                             class="profile_button_margin userfontfamily3 normalsize btn butt PUuserbutt boxshadow btn-lg logincolor">
-                                            所有社員借用情況
+                                            社員借用情況
                                         </button>
                                     </div>
                                     <div class="col-6 col-sm-6 text-center">
@@ -59,10 +58,17 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col text-center">
+                                    <div class="col-6 col-sm-6 text-center">
                                         <button onclick="location.href='{{route('admin.regulation')}}'"
                                             class="profile_button_margin userfontfamily3 normalsize btn butt PUuserbutt boxshadow btn-lg logincolor">
                                             借用規則設定
+                                        </button>
+                                    </div>
+
+                                    <div class="col-6 col-sm-6 text-center">
+                                        <button onclick="location.href='{{route('admin.bulletin.manager')}}'"
+                                            class="profile_button_margin userfontfamily3 normalsize btn butt PUuserbutt boxshadow btn-lg logincolor">
+                                            公告管理
                                         </button>
                                     </div>
                                 </div>

@@ -18,6 +18,5 @@
               </div>
         </div>
     </div>
-    @include('layouts.resetform')
 
 </div>

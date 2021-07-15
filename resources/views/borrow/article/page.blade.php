@@ -10,8 +10,7 @@
             $("input[type='number']").inputSpinner();
         });
     </script>
-    <title>靜宜大學登山社</title>
-</head>
+    </head>
 
 <body class="bodyimg" style="">
 
