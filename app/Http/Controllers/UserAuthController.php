@@ -81,9 +81,13 @@ class UserAuthController extends Controller
     {
         $User = Auth::user();
         $validated = $request->validate([
-            'profilepicture' => 'required|file',
+            'usernewpic' => 'required|file',
         ]);
-        $newpicture = $validated['profilepicture'];
+        $newpicture = $validated['usernewpic'];
+        $picmime = $newpicture->getMimeType();
+        if ($picmime == 'image/heif') {
+            return redirect('profile')->with('message', '更改失敗，請從相簿選擇圖片上傳');
+        }
         $filename = $User->account . '_picture.' . $newpicture->getClientOriginalExtension();
         if ($User->picture != 'default.jpg') {
             File::delete($User->picture);
@@ -109,4 +113,5 @@ class UserAuthController extends Controller
         return redirect('profile')->with('message', '密碼修改成功~');
     }
     //修改密碼
+
 }
