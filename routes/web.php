@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ToolController;
 use App\Http\Controllers\UserAuthController;
+use App\Http\Controllers\BulletinController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,6 @@ use App\Http\Controllers\UserAuthController;
 
 Route::view('PUmountain', 'PUmountain')->name('PUmountain');
 Route::view('PUpicture', 'PUpicture')->name('PUpicture');
-
 
 Route::view('register', 'PURegister')->name('register')->middleware('auth.backtoprofile');
 Route::view('login', 'PULogin')->name('login')->middleware('auth.backtoprofile');
@@ -43,7 +43,7 @@ Route::prefix('borrow')->middleware('auth.check')->name('borrow.')->group(functi
 
     Route::post('addtocart', [ToolController::class, 'AddToCart'])->name('addtocart')->middleware('borrow.backtomyorder');
     Route::get('cart', [ToolController::class, 'CartView'])->name('cart');
-    
+
     Route::group(['middleware' => 'borrow.backtocart'], function () {
         Route::post('updatecart', [ToolController::class, 'UpdateCart'])->name('updatecart');
         Route::get('removecart', [ToolController::class, 'RemoveCart'])->name('removecart');
@@ -60,26 +60,39 @@ Route::prefix('borrow')->middleware('auth.check')->name('borrow.')->group(functi
 });
 
 Route::prefix('admin')->middleware('auth.admin')->name('admin.')->group(function () {
-Route::view('/', 'admin/PUadmin')->name('page');
+    Route::view('/', 'admin/PUadmin')->name('page');
 
-Route::get('member', [AdminController::class, 'member'])->name('member');
-Route::post('promotion', [AdminController::class, 'promotion'])->name('promotion');
+    Route::get('member', [AdminController::class, 'member'])->name('member');
+    Route::post('promotion', [AdminController::class, 'promotion'])->name('promotion');
 
-Route::get('regulation', [AdminController::class, 'regulation'])->name('regulation');
-Route::get('prompters', [AdminController::class, 'prompters'])->name('prompters');
+    Route::get('regulation', [AdminController::class, 'regulation'])->name('regulation');
+    Route::get('prompters', [AdminController::class, 'prompters'])->name('prompters');
 
-Route::get('equipment/{category}', [AdminController::class, 'equipment'])->name('equipment');
-Route::post('change_quantity', [AdminController::class, 'change_quantity'])->name('change_quantity');
+    Route::prefix('bulletin')->name('bulletin.')->group(function () {
+        Route::get('manager', [BulletinController::class, 'manager'])->name('manager');
+        Route::view('newckedit', 'admin/bulletin/PUnewckedit')->name('newckedit');
+        Route::post('editckedit', [BulletinController::class, 'editckedit'])->name('editckedit');
 
-Route::view('addnewitem','admin/PUaddnewitem');
-Route::post('newequipment', [AdminController::class, 'newequipment'])->name('newequipment');
-Route::post('deleteequipment', [AdminController::class, 'deleteequipment'])->name('deleteequipment');
+        Route::post('createpost', [BulletinController::class, 'createpost'])->name('createpost');
+        Route::post('editpost', [BulletinController::class, 'editpost'])->name('editpost');
+        Route::post('deletepost', [BulletinController::class, 'deletepost'])->name('deletepost');
+    });
 
-Route::get('allorder/{status}', [AdminController::class, 'allorder'])->name('allorder');
+    Route::get('equipment/{category}', [AdminController::class, 'equipment'])->name('equipment');
+    Route::post('change_quantity', [AdminController::class, 'change_quantity'])->name('change_quantity');
 
-Route::post('helpborrow', [AdminController::class, 'helpborrow'])->name('helpborrow');
-Route::post('helpcancle', [AdminController::class, 'helpcancle'])->name('helpcancle');
-Route::post('helpreturn', [AdminController::class, 'helpreturn'])->name('helpreturn');
+    Route::view('addnewitem', 'admin/PUaddnewitem');
+    Route::post('newequipment', [AdminController::class, 'newequipment'])->name('newequipment');
+    Route::post('deleteequipment', [AdminController::class, 'deleteequipment'])->name('deleteequipment');
 
+    Route::get('allorder/{status}', [AdminController::class, 'allorder'])->name('allorder');
 
+    Route::post('helpborrow', [AdminController::class, 'helpborrow'])->name('helpborrow');
+    Route::post('helpcancle', [AdminController::class, 'helpcancle'])->name('helpcancle');
+    Route::post('helpreturn', [AdminController::class, 'helpreturn'])->name('helpreturn');
+});
+
+Route::prefix('bulletin')->name('bulletin.')->group(function () {
+    Route::get('/', [BulletinController::class, 'bulletinall'])->name('all');
+    Route::get('detail/{id}', [BulletinController::class, 'bulletindetail'])->name('detail');
 });
