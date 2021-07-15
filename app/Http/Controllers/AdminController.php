@@ -2,156 +2,180 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
+
+use Image, DB;
+use App\Models\User;
+use App\Models\Category;
+use App\Models\Order;
+use App\Models\Item;
+use App\Models\Prompter;
+use App\Models\Regulation;
+use App\Helpers\General\CollectionHelper;
+
 
 class AdminController extends Controller
 {
-    public function admin(){
-        if(Session::get('admin')==1){
-            return view('PUmountain/admin/PUadmin');
-        }
-        else{
-            return redirect('PUmountain');
-        }
+    //規則管理
+    public function regulation()
+    {
+        $rules = Regulation::all();
+        return view('admin/PUregulation', compact('rules'));
     }
-    public function member(){
-        if(Session::get('admin')==1){
-            $userdata=DB::table('users')->paginate(5);
-            return view('PUmountain/admin/PUmember',compact('userdata'));
-        }
-        else{
-            return redirect('PUmountain');
-        }
+    //規則管理
+
+    //跑馬燈管理
+    public function prompters()
+    {
+        $prompters = Prompter::all();
+        return view('admin/PUprompters', compact('prompters'));
     }
-    public function changetoadmin($id){
-        if(Session::get('admin')==1){
-            DB::update('update users set admin = 1 where id = ?', [$id]);
-            return redirect('admin/member')->with('message',"調整成功");
-        }
-        else{
-            return redirect('PUmountain');
-        }
+    //跑馬燈管理
+
+    //社員管理
+    public function member()
+    {
+        $users = User::paginate(5);
+        return view('admin/PUmember', compact('users'));
     }
-    public function equipment(){
-        if(Session::get('admin')==1){
-            $itemdata=DB::select('select * from items');
-            return view('PUmountain/admin/PUequipment',compact('itemdata'));
-        }
-        else{
-            return redirect('PUmountain');
-        }
+    public function promotion(Request $request)
+    {
+        User::where('id', $request->input('id'))->increment('is_admin');
+        return back()->with('message', "調整成功");
+    }
+    //社員管理
+
+    //器材管理
+    public function equipment($category)
+    {
+        $items = Category::where('category', $category)->first()->items;
+        return view('admin/equipment/PUequipment', compact('items', 'category'));
     }
 
-    public function change_equipment(Request $request){
-        if(Session::get('admin')==1){
-            $id=$request->id;
-            $new=$request->select;
-            $category=$request->category;
+    public function change_quantity(Request $request)
+    {
+        $id = $request->input('id');
+        $new_quantity = $request->input('new_quantity');
+        Item::find($id)->Update(['quantity' => $new_quantity]);
+        return back()->with('message', "調整數量成功");
+    }
+    //器材管理
 
-            DB::update('update items set items_quantity=? where items_id=?', [$new,$id]);
-            return redirect('admin/equipment')->with('message',"調整成功");
+    //新增器材
+    public function newequipment(Request $request)
+    {
+        $validated = $request->validate([
+            'category' => 'numeric|min:1',
+            'pic' => 'required|file',
+            'select' => 'numeric|min:1'
+        ]);
+        $quantity = $validated['select'];
+        $picture = $validated['pic'];
+        $category_id = $validated['category'];
+        $category = Category::find($category_id)->first()->category;
+
+        $statement = DB::select("SHOW TABLE STATUS LIKE 'items'");
+        $new_id = $statement[0]->Auto_increment;
+        $filename = $category . "_$new_id." . $picture->getClientOriginalExtension();
+
+        $item = new Item();
+        $item->category_id = $category_id;
+        $item->quantity = $quantity;
+        $item->picture = $filename;
+        $item->save();
+
+        Image::make($picture)->resize(1000, 1000)->save(public_path("/picture/borrow/$category/" . $filename));
+
+        return back()->with('message', '添加成功!');
+    }
+    //新增器材
+
+    //刪除器材
+    public function deleteequipment(Request $request)
+    {
+        $id = $request->input('deleteid');
+        Item::find($id)->delete();
+        return back()->with('message', '刪除成功');
+    }
+    //刪除器材
+
+    //管理訂單
+    public function allorder($status)
+    {
+        if ($status == 'all') {
+            $orders = Order::all()->sortByDesc('id');
+        } else if ($status == 'waitoget') {
+            $orders = Order::where('status', 2)->get()->sortByDesc('id');
+        } else if ($status == 'using') {
+            $orders = Order::where('status', 1)->get()->sortByDesc('id');
+        } else if ($status == 'returned') {
+            $orders = Order::where('status', 0)->get()->sortByDesc('id');
+        } else if ($status == 'cancle') {
+            $orders = Order::where('status', 99)->get()->sortByDesc('id');
         }
-        else{
-            return redirect('PUmountain');
-        }
+        $orders = CollectionHelper::paginate($orders, 3);
+        return view('admin/allorder/page', compact('orders'));
     }
 
-    public function all(){
-        if(Session::get('admin')==1){
-            $allorder=DB::select('select * from ordertab');
-            $user_data=DB::table('ordertab')->orderBy('order_id','desc')->get();
-            $user_countdata=DB::table('ordertab')->select('order_id', DB::raw('count(*) as user_borrowtime'))->groupBy('order_id')->orderBy('order_id','desc')->get();
-            return view('PUmountain/admin/allorder/all',compact('user_data','user_countdata'));
+    public function helpborrow(Request $request)
+    {
+        $picture = $request->file('admin_sendpic1');
+        if ($picture == '') {
+            return redirect('admin/allorder/waitoget')->with('message', '代傳失敗，請記得上傳照片~');
         }
-        else{
-            return redirect('PUmountain');
-        }
+        $order_id = $request->input('order_id');
+        $mail = Order::find($order_id)->user()->first()->contact_email;
+        $filename = $order_id . "_out." . $picture->getClientOriginalExtension();
+        Order::find($order_id)->update(['pic_borrow' => $filename]);
+
+        Image::make($picture)->resize(500, 500, function ($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        })->save(public_path('/uploads/order_out/' . $filename));
+        $getDate = date("Y-m-d");
+        $order_lastreturndate = date("Y-m-d", strtotime('+ 14day'));
+        Order::find($order_id)->update(['borrow_date' => $getDate, 'last_return_date' => $order_lastreturndate, 'status' => 1]);
+        // Mail::to($mail)->send(new Using());
+        return redirect('admin/allorder/using')->with('message', '代借用成功!');
+    }
+    public function helpcancle(Request $request)
+    {
+        $order_id = $request->input('cancle_orderid');
+
+        $order_details = Order::find($order_id)->order_details;
+        foreach ($order_details as $order_detail) {
+            Item::find($order_detail->item_id)->increment('quantity', $order_detail->quantity);
+        };
+        Order::find($order_id)->update(['status' => 99]);
+
+        return redirect('admin/allorder/cancle')->with('message', '管理取消成功');
     }
 
-    public function waitoget(){
-        if(Session::get('admin')==1){
-            $allorder=DB::select('select * from ordertab');
-            $user_data=DB::table('ordertab')->orderBy('order_id','desc')->get();
-            $user_countdata=DB::table('ordertab')->select('order_id', DB::raw('count(*) as user_borrowtime'))->groupBy('order_id')->orderBy('order_id','desc')->get();
-            return view('PUmountain/admin/allorder/waitoget',compact('user_data','user_countdata'));
+    public function helpreturn(Request $request)
+    {
+        $picture = $request->file('admin_returnpic2');
+        // dd($picture);
+        if ($picture == '') {
+            return redirect('admin/allorder/using')->with('message', '代傳失敗，請記得上傳照片~');
         }
-        else{
-            return redirect('PUmountain');
-        }
-    }
+        $order_id = $request->input('return_order_id');
+        $mail = Order::find($order_id)->user()->first()->contact_email;
+        $filename = $order_id . "_in." . $picture->getClientOriginalExtension();
+        Order::find($order_id)->update(['pic_return' => $filename]);
 
-    public function borrowing(){
-        if(Session::get('admin')==1){
-            $allorder=DB::select('select * from ordertab');
-            $user_data=DB::table('ordertab')->orderBy('order_id','desc')->get();
-            $user_countdata=DB::table('ordertab')->select('order_id', DB::raw('count(*) as user_borrowtime'))->groupBy('order_id')->orderBy('order_id','desc')->get();
-            return view('PUmountain/admin/allorder/borrowing',compact('user_data','user_countdata'));
-        }
-        else{
-            return redirect('PUmountain');
-        }
-    }
+        Image::make($picture)->resize(500, 500, function ($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        })->save(public_path('/uploads/order_in/' . $filename));
+        $getDate = date("Y-m-d");
 
-    public function done(){
-        if(Session::get('admin')==1){
-            $allorder=DB::select('select * from ordertab');
-            $user_data=DB::table('ordertab')->orderBy('order_id','desc')->get();
-            $user_countdata=DB::table('ordertab')->select('order_id', DB::raw('count(*) as user_borrowtime'))->groupBy('order_id')->orderBy('order_id','desc')->get();
-            return view('PUmountain/admin/allorder/done',compact('user_data','user_countdata'));
-        }
-        else{
-            return redirect('PUmountain');
-        }
+        $order_details = Order::find($order_id)->order_details;
+        foreach ($order_details as $order_detail) {
+            Item::find($order_detail->item_id)->increment('quantity', $order_detail->quantity);
+        };
+        Order::find($order_id)->update(['return_date' => $getDate, 'status' => 0]);
+        // Mail::to($mail)->send(new Returned());
+        return redirect('admin/allorder/returned')->with('message', '管理代歸還成功');
     }
-
-    public function adminreturn($order_id){
-        
-        
-        $readyreturn=DB::select('select items_id , items_quantity from ordertab where order_id = ?', [$order_id]);
-        $returnqur=count($readyreturn);
-        for($i=0;$i<$returnqur;$i++){
-            DB::update('update items set items_quantity = items_quantity + ? where items_id = ?', [$readyreturn[$i]->items_quantity,$readyreturn[$i]->items_id]);
-        }
-        DB::update("update ordertab set order_status = 99 where order_id = ?", [$order_id]);
-        return redirect('admin/allorder/all')->with('message','刪除成功');
-    }
-    
-    public function addnewitem(Request $request){
-        if(Session::get('admin')==1){
-            return view('PUmountain/admin/PUaddnewitem');
-        }
-        else{
-            return redirect('PUmountain');
-        }
-    }
-
-    public function updatenewitem(Request $request){
-        if(Session::get('admin')==1){
-            if($request->hasFile('newitempic')){
-                if($request->newcategory!=1){
-                $newqua=$request->select;
-                $newcategory=$request->newcategory;
-                $last_data=DB::select('select * from items ORDER BY items_id DESC LIMIT 0 , 1');
-                $last=$last_data[0]->items_id;
-                $newid=$last+1;
-                $picture = $request->file('newitempic');
-                $filename = $newcategory."_$newid.".$picture->getClientOriginalExtension();
-                DB::insert('insert into items (items_category,items_quantity,items_picture) values (?,?,?)', [$newcategory,$newqua,$filename]);
-                Image::make($picture)->resize(1000,1000)->save( public_path("/picture/PUmountain/borrow/$newcategory/".$filename));
-                
-                return redirect("admin/addnewitem")->with('message','添加成功!');
-                }
-                else{
-                    return redirect("admin/addnewitem")->with('message','請選擇種類~');   
-                }
-            }
-                else {
-                    return redirect("admin/addnewitem")->with('message','請上傳圖片~');   
-                }
-        }
-        else{
-            return redirect('PUmountain');
-        }
-    }
-
 }
