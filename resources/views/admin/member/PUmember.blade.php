@@ -3,10 +3,10 @@
 
 <head>
     @include('layouts.head')
-        <link rel="stylesheet" href="{{ asset('css/PUmountain/table.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/PUmountain/table.css') }}">
 </head>
 
-<body class="bodyimg" >
+<body class="bodyimg">
 
     <div class="PUcontainer ">
         <header class="PUnavheader">
@@ -53,12 +53,10 @@
                                             <td data-th="Line" id="line">{{ $user->contact_line }}</td>
                                             <td data-th="升為管理員" class="change">
                                                 @if ($user->is_admin == 0)
-                                                <form action="{{route('admin.promotion')}}" method="post">
-                                                    @csrf
-                                                    <input type="hidden" name="id" value="{{ $user->id }}">
-                                                    <input type="submit" value="升為管理員"
-                                                        class="btn btn-primary addtext userfontfamily2 "
-                                                        onclick="do_click();">
+                                                <input type="button" value="升為管理員"
+                                                    class="btn btn-primary addtext userfontfamily2 "
+                                                    data-bs-toggle="modal" data-bs-target="#UpgradeAdminmodal"
+                                                    onclick="UpgradeAdmin({{$user->id}},'{{$user->nickname}}');">
                                                 </form>
                                             </td>
 
@@ -69,14 +67,21 @@
                                             @endif
                                         </tr>
                                         @endforeach
+                                        @include('admin.member.UpgradeAdmin_modal')
+                                        <script>
+                                            function UpgradeAdmin($id,$title){
+                                            $('#UpgradeAdminid').val($id);
+                                            $('#UpgradeAdminname').text($title);
+                                            };
+                                        </script>
 
 
 
 
                                     </tbody>
                                 </table>
-                                
-                              
+
+
                             </div>
                         </div>
 
