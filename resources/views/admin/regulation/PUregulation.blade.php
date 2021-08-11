@@ -18,7 +18,7 @@
         <section id="" class="">
             @include('layouts.alert')
 
-            <div class='container PUprofile'>
+            <div class='container PUprofile mobilemargintop'>
                 <div class="row justify-content-center align-items-center">
                     <div class="col align-self-center">
 
@@ -27,13 +27,15 @@
                             <div class="card-header ">
                                 <p class="userfontfamily2 loginsize">借用規則管理</p>
                             </div>
-
+                            <div class="card-header opwhite" style="text-align: center;padding: 8px;">
+                                <input type="button" class="btn btn-primary addtext userfontfamily2 btncolor" value="新增規則" data-bs-toggle="modal" data-bs-target="#addrulemodal">
+                                @include('admin.regulation.addrule_modal')
+                            </div>
                             <div class="card-body ">
                                 <table class="table table-striped rwd-table" style="background-color: white;"
                                     id="table">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th scope="col">ID</th>
                                             <th scope="col">規則</th>
                                             <th scope="col">編輯</th>
                                         </tr>
@@ -41,12 +43,30 @@
                                     <tbody>
                                         @foreach ($rules as $rule)
                                         <tr>
-                                            <td data-th="ID" id="id">{{ $rule->id }}</td>
                                             <td data-th="規則" id="rule">{{ $rule->rule }}</td>
-                                            <td data-th="編輯" class="change"></td>
+                                            <td data-th="編輯" class="change">
+                                                <i style="cursor: pointer; font-size: 30px;" class="fas fa-edit" data-bs-toggle="modal"
+                                                data-bs-target="#editruleModal"
+                                                onclick="editrule({{$rule->id}},'{{$rule->rule}}');"></i>
+                                                <i style="cursor: pointer; font-size: 30px;" class="fas fa-trash-alt" data-bs-toggle="modal"
+                                                data-bs-target="#deleterulemodal"
+                                                onclick="deleterule({{$rule->id}},'{{$rule->rule}}');"></i>
+                                            </td>
                                         </tr>
                                         @endforeach
+                                        @include('admin.regulation.editrule_modal')
+                                        @include('admin.regulation.deleterule_modal')
 
+                                        <script>
+                                            function editrule($id,$rule){
+                                                $('#ruleid').val($id);
+                                                $('#rulecontext').val($rule);
+                                            };
+                                            function deleterule($id,$rule){
+                                                $('#deleteruleid').val($id);
+                                                $('#deleterulecontext').text($rule);
+                                            };
+                                        </script>
 
 
 

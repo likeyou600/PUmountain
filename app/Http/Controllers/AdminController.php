@@ -21,7 +21,29 @@ class AdminController extends Controller
     public function regulation()
     {
         $rules = Regulation::all();
-        return view('admin/PUregulation', compact('rules'));
+        return view('admin/regulation/PUregulation', compact('rules'));
+    }
+    public function changerule(Request $request)
+    {
+        Regulation::find($request->input('ruleid'))->update(['rule' => $request->input('rulecontext')]);
+        return back()->with('message', "調整成功");
+    }
+    public function addrule(Request $request)
+    {   
+        $validated = $request->validate([
+            'newrule' => 'required',
+        ]);
+        $rule = new Regulation();
+        $rule->rule = $validated['newrule'];
+        $saved = $rule->save();
+        if ($saved) {
+            return back()->with('message', '新增成功');
+        }
+    }
+    public function deleterule(Request $request)
+    {
+        Regulation::find($request->input('deleteruleid'))->delete();
+        return back()->with('message', "刪除成功");
     }
     //規則管理
 
@@ -29,7 +51,15 @@ class AdminController extends Controller
     public function prompters()
     {
         $prompters = Prompter::all();
-        return view('admin/PUprompters', compact('prompters'));
+        return view('admin/prompters/PUprompters', compact('prompters'));
+    }
+    public function changeprompters(Request $request)
+    {   
+        $validated = $request->validate([
+            'promptercontext' => 'required',
+        ]);
+        Prompter::find(1)->update(['content' => $validated['promptercontext']]);
+        return back()->with('message', "調整成功");
     }
     //跑馬燈管理
 
@@ -37,11 +67,11 @@ class AdminController extends Controller
     public function member()
     {
         $users = User::paginate(5);
-        return view('admin/PUmember', compact('users'));
+        return view('admin/member/PUmember', compact('users'));
     }
     public function promotion(Request $request)
     {
-        User::where('id', $request->input('id'))->increment('is_admin');
+        User::where('id', $request->input('UpgradeAdminid'))->increment('is_admin');
         return back()->with('message', "調整成功");
     }
     //社員管理

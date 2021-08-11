@@ -66,7 +66,12 @@ Route::prefix('admin')->middleware('auth.admin')->name('admin.')->group(function
     Route::post('promotion', [AdminController::class, 'promotion'])->name('promotion');
 
     Route::get('regulation', [AdminController::class, 'regulation'])->name('regulation');
+    Route::post('changerule', [AdminController::class, 'changerule'])->name('changerule');
+    Route::post('deleterule', [AdminController::class, 'deleterule'])->name('deleterule');
+    Route::post('addrule', [AdminController::class, 'addrule'])->name('addrule');
+
     Route::get('prompters', [AdminController::class, 'prompters'])->name('prompters');
+    Route::post('changeprompters', [AdminController::class, 'changeprompters'])->name('changeprompters');
 
     Route::prefix('bulletin')->name('bulletin.')->group(function () {
         Route::get('manager', [BulletinController::class, 'manager'])->name('manager');
