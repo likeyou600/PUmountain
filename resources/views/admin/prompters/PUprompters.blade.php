@@ -42,10 +42,21 @@
                                         <tr>
                                             <td data-th="ID" id="id">{{ $prompter->id }}</td>
                                             <td data-th="規則" id="rule">{{ $prompter->content }}</td>
-                                            <td data-th="編輯" class="change"></td>
+                                            <td data-th="編輯" class="change">
+                                                <i style="cursor: pointer; font-size: 30px;" class="fas fa-edit" data-bs-toggle="modal"
+                                                data-bs-target="#editpromptersModal"
+                                                onclick="editprompter({{$prompter->id}},'{{$prompter->content}}');"></i>
+                                            </td>
                                         </tr>
                                         @endforeach
+                                        @include('admin.prompters.editprompters_modal')
 
+                                        <script>
+                                            function editprompter($id,$rule){
+                                                $('#prompterid').val($id);
+                                                $('#promptercontext').val($rule);
+                                            };
+                                        </script>
 
 
 
