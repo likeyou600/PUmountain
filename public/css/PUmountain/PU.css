@@ -319,6 +319,21 @@
         top: 10%;
         margin: auto;
     }
+    .normalsize {
+        font-size: 27px;
+    }
+}
+
+.backdiv {
+    margin: 0px auto 0px auto;
+    width: 45%;
+    font-size: 18px;
+}
+
+.back {
+    width: 100%!important;
+    margin-bottom: 10px;
+    border-style: dashed!important;
 }
 
 .table {

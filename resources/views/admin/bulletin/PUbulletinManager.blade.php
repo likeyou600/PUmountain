@@ -10,6 +10,9 @@
         @include('layouts.navbar')
         @include('layouts.alert')
     </header>
+    <div class="backdiv">
+        <input type="button" class="back" onclick="location.href='{{route('admin.page')}}'" value="回到管理選單">
+    </div>
     <div class="allnews">
         <p class="newstext contact_text">管理公告</p>
         <div class="card-header opwhite" style="text-align: center;padding: 8px;">

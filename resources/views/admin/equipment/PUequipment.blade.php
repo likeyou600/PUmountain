@@ -20,6 +20,9 @@
             @include('layouts.navbar')
             @include('layouts.alert')
         </header>
+        <div class="backdiv">
+            <input type="button" class="back" onclick="location.href='{{route('admin.page')}}'" value="回到管理選單">
+        </div>
             <div class='container PUprofile mobilemargintop'>
                 <div class="row justify-content-center align-items-center">
                     <div class="col align-self-center">

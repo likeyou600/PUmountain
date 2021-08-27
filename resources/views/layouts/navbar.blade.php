@@ -44,8 +44,6 @@
                     @if(Auth::user()->is_admin==1)
                     <a class="dropdown-item" href="{{route('admin.page')}}">管理模式</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href=" {{route('admin.bulletin.newckedit')}}">新增公告</a>
-                    <div class="dropdown-divider"></div>
                     @endif
                     <a class="dropdown-item" href="{{route('borrow.article',array('mat'))}}">器材借用</a>
                     <div class="dropdown-divider"></div>

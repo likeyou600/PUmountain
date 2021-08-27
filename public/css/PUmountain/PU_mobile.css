@@ -317,4 +317,7 @@
     .content {
         margin-top: 5%;
     }
+    .normalsize {
+        font-size: 22px;
+    }
 }

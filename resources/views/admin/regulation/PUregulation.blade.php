@@ -14,7 +14,9 @@
 
             @include('layouts.navbar')
         </header>
-
+        <div class="backdiv">
+            <input type="button" class="back" onclick="location.href='{{route('admin.page')}}'" value="回到管理選單">
+        </div>
         <section id="" class="">
             @include('layouts.alert')
 
