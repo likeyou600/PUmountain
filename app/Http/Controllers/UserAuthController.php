@@ -6,9 +6,7 @@ use Illuminate\Http\Request;
 
 use Auth, Image, File;
 use App\Models\User;
-use App\Models\Order;
-use App\Models\Item;
-use App\Models\OrderDetail;
+
 
 class UserAuthController extends Controller
 {

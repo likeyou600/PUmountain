@@ -12,11 +12,21 @@ use App\Models\Order;
 use App\Models\Item;
 use App\Models\Prompter;
 use App\Models\Regulation;
+use App\Models\PhotoYear;
 use App\Helpers\General\CollectionHelper;
 
 
 class AdminController extends Controller
 {
+    //活動照片
+    public function PUpicture($year)
+    {   
+        $years = PhotoYear::all();
+        $items = PhotoYear::where('year', $year)->first()->activityphotos;
+        return view("PUpicture", compact('years', 'items'));
+    }
+    //活動照片
+
     //規則管理
     public function regulation()
     {
@@ -29,7 +39,7 @@ class AdminController extends Controller
         return back()->with('message', "調整成功");
     }
     public function addrule(Request $request)
-    {   
+    {
         $validated = $request->validate([
             'newrule' => 'required',
         ]);
@@ -54,7 +64,7 @@ class AdminController extends Controller
         return view('admin/prompters/PUprompters', compact('prompters'));
     }
     public function changeprompters(Request $request)
-    {   
+    {
         $validated = $request->validate([
             'promptercontext' => 'required',
         ]);

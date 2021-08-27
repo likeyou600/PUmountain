@@ -20,7 +20,6 @@ use App\Http\Controllers\BulletinController;
 
 
 Route::view('PUmountain', 'PUmountain')->name('PUmountain');
-Route::view('PUpicture', 'PUpicture')->name('PUpicture');
 
 Route::view('register', 'PURegister')->name('register')->middleware('auth.backtoprofile');
 Route::view('login', 'PULogin')->name('login')->middleware('auth.backtoprofile');
@@ -101,3 +100,6 @@ Route::prefix('bulletin')->name('bulletin.')->group(function () {
     Route::get('/', [BulletinController::class, 'bulletinall'])->name('all');
     Route::get('detail/{id}', [BulletinController::class, 'bulletindetail'])->name('detail');
 });
+
+Route::get('picture/{year}', [AdminController::class, 'PUpicture'])->name('ActivityPicture');
+

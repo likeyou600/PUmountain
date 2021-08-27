@@ -63,12 +63,12 @@
             </div>
             <div class="us">
                 <input type="button" class="PUpoint" style="background-image: url(picture/material/aboutus.png);"
-                    onclick="do_click();location.href='{{route('PUpicture')}}'">
+                    onclick="do_click();location.href=''">
                 <p class="PUtext">關於我們</p>
             </div>
             <div class="camera">
                 <input type="button" class="PUpoint" style="background-image: url(picture/material/camera.png);"
-                    onclick="do_click();location.href='{{route('PUpicture')}}'">
+                    onclick="do_click();location.href='{{route('ActivityPicture',['1081'])}}'">
                 <p class="PUtext">活動照片</p>
             </div>
         </div>

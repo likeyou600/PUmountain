@@ -11,7 +11,9 @@
 
             @include('layouts.navbar')
         </header>
-
+        <div class="backdiv">
+            <input type="button" class="back" onclick="location.href='{{route('profile')}}'" value="回到儀表板">
+        </div>
         <section id="" class="mobilemargintop">
             @include('layouts.alert')
 
