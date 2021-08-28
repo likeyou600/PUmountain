@@ -74,6 +74,14 @@
                                         </button>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-6 col-sm-6 text-center">
+                                        <button onclick="location.href='{{route('admin.admin_picture',['109-2'])}}'"
+                                            class="profile_button_margin userfontfamily3 normalsize btn butt PUuserbutt boxshadow btn-lg logincolor">
+                                            活動照片管理
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

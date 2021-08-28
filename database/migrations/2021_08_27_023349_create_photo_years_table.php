@@ -15,7 +15,7 @@ class CreatePhotoYearsTable extends Migration
     {
         Schema::create('photo_years', function (Blueprint $table) {
             $table->id()->comment("年份ID");
-            $table->integer('year')->comment("年份");
+            $table->string('year',255)->comment("年份");
         });
     }
 

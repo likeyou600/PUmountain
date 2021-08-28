@@ -68,7 +68,7 @@
             </div>
             <div class="camera">
                 <input type="button" class="PUpoint" style="background-image: url(picture/material/camera.png);"
-                    onclick="do_click();location.href='{{route('ActivityPicture',['1081'])}}'">
+                    onclick="do_click();location.href='{{route('ActivityPicture',['109-2'])}}'">
                 <p class="PUtext">活動照片</p>
             </div>
         </div>

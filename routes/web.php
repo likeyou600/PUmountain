@@ -94,6 +94,12 @@ Route::prefix('admin')->middleware('auth.admin')->name('admin.')->group(function
     Route::post('helpborrow', [AdminController::class, 'helpborrow'])->name('helpborrow');
     Route::post('helpcancle', [AdminController::class, 'helpcancle'])->name('helpcancle');
     Route::post('helpreturn', [AdminController::class, 'helpreturn'])->name('helpreturn');
+
+    Route::get('picture/{year}', [AdminController::class, 'admin_picture'])->name('admin_picture');
+    Route::post('addnewyear', [AdminController::class, 'addnewyear'])->name('addnewyear');
+    Route::post('addnewlink', [AdminController::class, 'addnewlink'])->name('addnewlink');
+    Route::post('deletelink', [AdminController::class, 'deletelink'])->name('deletelink');
+
 });
 
 Route::prefix('bulletin')->name('bulletin.')->group(function () {
@@ -101,5 +107,6 @@ Route::prefix('bulletin')->name('bulletin.')->group(function () {
     Route::get('detail/{id}', [BulletinController::class, 'bulletindetail'])->name('detail');
 });
 
-Route::get('picture/{year}', [AdminController::class, 'PUpicture'])->name('ActivityPicture');
+Route::get('picture/{year}', [ToolController::class, 'PUpicture'])->name('ActivityPicture');
+
 

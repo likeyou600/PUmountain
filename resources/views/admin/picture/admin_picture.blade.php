@@ -16,6 +16,9 @@
 
 
         </header>
+        <div class="backdiv">
+            <input type="button" class="back" onclick="location.href='{{route('admin.page')}}'" value="回到管理選單">
+        </div>
         <div class='container PUprofile mobilemargintop'>
             <div class="row justify-content-center align-items-center">
                 <div class="col align-self-center">
@@ -25,7 +28,20 @@
                         <div class="card-header opwhite" style="text-align: center;padding: 8px;">
                             <p class="userfontfamily2 tooltitle ">活動照片</p>
                         </div>
-                        
+                        <div class="card-header opwhite" style="text-align: center;padding: 8px;">
+                            <input type="button" class="btn btn-primary addtext userfontfamily2 btncolor" value="新增學年分"
+                                data-bs-toggle="modal" data-bs-target="#newyearmodal">
+                            @include('admin.picture.picture_modal.newyearmodal')
+                            <input type="button" class="btn btn-primary addtext userfontfamily2 btncolor" value="新增連結"
+                                data-bs-toggle="modal" data-bs-target="#newlinkmodal">
+                            @include('admin.picture.picture_modal.newlinkmodal')
+
+                            <input type="button" class="btn btn-primary addtext userfontfamily2 btncolor" value="刪除連結"
+                                data-bs-toggle="modal" data-bs-target="#deletelinkmodal">
+                            @include('admin.picture.picture_modal.deletelinkmodal')
+
+
+                        </div>
                         <div class="card-body opwhite" style="    padding: 0;">
                             <div class="row" style="width: 100%;
                             margin-left: 0;">
@@ -46,7 +62,7 @@
                                             @endif
 
                                             <input type="button" class="btn btn-secondary" value="{{$year->year}}"
-                                                onclick="location.href='{{route( 'ActivityPicture',[$year->year])}}'">
+                                                onclick="location.href='{{route( 'admin.admin_picture',[$year->year])}}'">
 
                                             @if($counter%2==0)
                                         </div>
