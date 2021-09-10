@@ -16,9 +16,17 @@ use App\Models\Order;
 use App\Models\Item;
 use App\Models\OrderDetail;
 use App\Models\Regulation;
+use App\Models\PhotoYear;
 
 class ToolController extends Controller
-{
+{   
+    public function PUpicture($year)
+    {   
+        $years = PhotoYear::all();
+        $items = PhotoYear::where('year', $year)->first()->activityphotos;
+        return view("PUpicture", compact('years', 'items'));
+    }
+    
     public function sendmail()
     {
         Mail::to(Auth::user()->contact_email)->send(new Waitoget());

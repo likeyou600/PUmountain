@@ -13,17 +13,46 @@ use App\Models\Item;
 use App\Models\Prompter;
 use App\Models\Regulation;
 use App\Models\PhotoYear;
+use App\Models\ActivityPhoto;
+
 use App\Helpers\General\CollectionHelper;
 
 
 class AdminController extends Controller
 {
     //活動照片
-    public function PUpicture($year)
+    public function admin_picture($year)
     {   
         $years = PhotoYear::all();
         $items = PhotoYear::where('year', $year)->first()->activityphotos;
-        return view("PUpicture", compact('years', 'items'));
+        return view("admin/picture/admin_picture", compact('years', 'items'));
+    }
+    public function addnewyear(Request $request)
+    {   
+        $PhotoYear = new PhotoYear();
+        $PhotoYear->year=$request->input('newyear');
+        $PhotoYear->save();
+        return back()->with('message', "新增成功");
+    }
+    public function addnewlink(Request $request)
+    {   
+        if($request->input('year')=="0"){
+            return back()->with('message', "請選擇學年度");
+        }
+        $ActivityPhoto = new ActivityPhoto();
+        $ActivityPhoto->photo_year_id=$request->input('year');
+        $ActivityPhoto->location=$request->input('name');
+        $ActivityPhoto->site=$request->input('site');
+        $ActivityPhoto->save();
+        return back()->with('message', "新增成功");
+    }
+    public function deletelink(Request $request)
+    {   
+        if($request->input('deletesiteid')=='0'){
+            return back()->with('message', "請選擇想刪除的");
+        }
+        ActivityPhoto::find($request->input('deletesiteid'))->delete();
+        return back()->with('message', "刪除成功");
     }
     //活動照片
 
