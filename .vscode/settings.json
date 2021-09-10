@@ -10,5 +10,9 @@
         "**/.history/**"
     ],
     "bladeFormatter.format.wrapLineLength": 180,
-    "blade.format.enable": true
+    "blade.format.enable": true,
+    "editor.defaultFormatter": "onecentlin.laravel-blade",
+    "[css]": {
+        "editor.defaultFormatter": "lonefy.vscode-JS-CSS-HTML-formatter"
+    }
 }

@@ -37,12 +37,9 @@
     <div class="container" style="    margin-top: 10px;">
         <div class="flexslider PUpicsli borderradis">
             <ul class="slides">
-                <li><img src="picture/slide/1.jpg" class="borderradis"></li>
                 <li><img src="picture/slide/2.jpg" class="borderradis"></li>
                 <li><img src="picture/slide/3.jpg" class="borderradis"></li>
                 <li><img src="picture/slide/4.jpg" class="borderradis"></li>
-                <li><img src="picture/slide/5.jpg" class="borderradis"></li>
-                <li><img src="picture/slide/6.jpg" class="borderradis"></li>
             </ul>
 
         </div>

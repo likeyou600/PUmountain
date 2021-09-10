@@ -209,7 +209,7 @@
         }
     }
     .bodyimg {
-        background: url(../../picture/material/test3.jpg) no-repeat center top fixed;
+        background: url(../../picture/material/background.jpg) no-repeat center top fixed;
         background-size: 100% auto;
         background-position-y: 30%;
     }
@@ -267,14 +267,14 @@
     }
     #loading {
         position: fixed;
-        top: 18%;
+        top: 36%;
         left: 0;
         right: 0;
         text-align: center;
         z-index: 100000;
     }
     #loading img {
-        width: 20%;
+        width: 6%;
     }
     .loadpsize {
         background-color: #faebd7a6;

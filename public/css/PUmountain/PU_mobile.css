@@ -1,6 +1,6 @@
 @media only screen and (max-width:576px) {
     .bodyimg {
-        background: url(../../picture/material/test3.jpg) no-repeat center top fixed;
+        background: url(../../picture/material/background.jpg) no-repeat center top fixed;
         background-size: 390% auto;
         background-position-x: 55%;
     }
@@ -268,14 +268,14 @@
     }
     #loading {
         position: fixed;
-        top: 25%;
+        top: 38%;
         left: 0;
         right: 0;
         text-align: center;
         z-index: 100000;
     }
     #loading img {
-        width: 85%;
+        width: 30%;
     }
     .process {
         width: 65%;
