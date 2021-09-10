@@ -71,7 +71,7 @@
                                                     @foreach ($orders as $order)
                                                     @php
                                                     $order_status = $order->status;
-                                                    $order_username=App\models\User::find($order->user_id)->first()->nickname;
+                                                    $order_username=App\models\User::find($order->user_id)->nickname;
                                                     $order_id = $order->id;
                                                     $order_borrowdate = $order->borrow_date;
                                                     $order_lastreturndate =$order->last_return_date;
