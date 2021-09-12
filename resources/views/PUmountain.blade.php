@@ -49,7 +49,7 @@
             <input type="button" class="PUcontact_icon" style="background-image: url(picture/material/facebook.png);"
                 onclick="location.href='https://www.facebook.com/PUCC10325'">
             <input type="button" class="PUcontact_icon" style="background-image: url(picture/material/line.png);"
-                onclick="location.href='https://line.me/ti/p/X0XBiAnjFw'">
+                onclick="location.href='https://line.me/R/ti/g/DhiWs3waZg'">
         </div>
 
         <div class="icon">

@@ -37,6 +37,7 @@ Route::prefix('auth')->name('auth.')->group(function () {
 
 Route::prefix('borrow')->middleware('auth.check')->name('borrow.')->group(function () {
     Route::get('sendmail', [ToolController::class, 'sendmail'])->name('sendmail');
+    Route::get('showmail', [ToolController::class, 'showmail'])->name('showmail');
 
     Route::get('selectpage/{category}', [ToolController::class, 'article'])->name('article');
 

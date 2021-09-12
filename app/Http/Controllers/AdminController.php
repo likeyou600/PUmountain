@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Cancle;
+use App\Mail\Returned;
+use App\Mail\Using;
 
 use Illuminate\Http\Request;
 
-use Image, DB;
+use Image, DB,Mail;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Order;
@@ -205,18 +208,26 @@ class AdminController extends Controller
         $getDate = date("Y-m-d");
         $order_lastreturndate = date("Y-m-d", strtotime('+ 14day'));
         Order::find($order_id)->update(['borrow_date' => $getDate, 'last_return_date' => $order_lastreturndate, 'status' => 1]);
-        // Mail::to($mail)->send(new Using());
+        
+        //寄信
+        $User=Order::find($order_id)->user;
+        $order = $User->orders->where('status', 1)->sortByDesc('id')->first();
+        $order_details = $User->orders->where('status', 1)->sortByDesc('id')->first()->order_details;
+        Mail::to($User->contact_email)->send(new Using($order, $order_details));
+        //寄信
+        
         return redirect('admin/allorder/using')->with('message', '代借用成功!');
     }
     public function helpcancle(Request $request)
-    {
+    {   
         $order_id = $request->input('cancle_orderid');
-
         $order_details = Order::find($order_id)->order_details;
         foreach ($order_details as $order_detail) {
             Item::find($order_detail->item_id)->increment('quantity', $order_detail->quantity);
         };
         Order::find($order_id)->update(['status' => 99]);
+
+        Mail::to(Order::find($order_id)->user->contact_email)->send(new Cancle());
 
         return redirect('admin/allorder/cancle')->with('message', '管理取消成功');
     }
@@ -244,7 +255,15 @@ class AdminController extends Controller
             Item::find($order_detail->item_id)->increment('quantity', $order_detail->quantity);
         };
         Order::find($order_id)->update(['return_date' => $getDate, 'status' => 0]);
-        // Mail::to($mail)->send(new Returned());
+        
+
+        //寄信
+        $User=Order::find($order_id)->user;
+        $order = $User->orders->where('status', 0)->sortByDesc('id')->first();
+        $order_details = $User->orders->where('status', 0)->sortByDesc('id')->first()->order_details;
+        Mail::to($User->contact_email)->send(new Returned($order, $order_details));
+        //寄信
+
         return redirect('admin/allorder/returned')->with('message', '管理代歸還成功');
     }
 }

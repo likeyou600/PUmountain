@@ -19,19 +19,27 @@ use App\Models\Regulation;
 use App\Models\PhotoYear;
 
 class ToolController extends Controller
-{   
+{
+    // public function showmail()
+    // {
+    //     return view('mail.cancle');
+    // }
+    // public function sendmail()
+    // {
+    //     $User = Auth::user();
+   
+    //     dd(123);
+    // }
+
+    //活動照片
     public function PUpicture($year)
-    {   
+    {
         $years = PhotoYear::all();
         $items = PhotoYear::where('year', $year)->first()->activityphotos;
         return view("PUpicture", compact('years', 'items'));
     }
-    
-    public function sendmail()
-    {
-        Mail::to(Auth::user()->contact_email)->send(new Waitoget());
-        dd(123);
-    }
+    //活動照片
+
     //借用規則
     public function rule()
     {
@@ -144,7 +152,11 @@ class ToolController extends Controller
         }
         Cart::session($User->id)->clear();
 
-        // Mail::to($User->contact_email)->send(new Waitoget());
+        //寄信
+        $order_details = $User->orders->where('status', 2)->sortByDesc('id')->first()->order_details;
+        Mail::to($User->contact_email)->send(new Waitoget($order_details));
+        //寄信
+
         return redirect("borrow/myorder/waitoget")->with('message', '申請成功!');
     }
     //存入資料庫
@@ -164,7 +176,7 @@ class ToolController extends Controller
         } else if ($status == 'cancle') {
             $orders = $User->orders->where('status', 99)->sortByDesc('id');
         }
-        $orders=CollectionHelper::paginate($orders,3);
+        $orders = CollectionHelper::paginate($orders, 3);
         return view('borrow/myorder/page', compact('orders'));
     }
     //個人檢視頁面
@@ -178,6 +190,7 @@ class ToolController extends Controller
 
     public function sendpic(request $request)
     {
+        $User = Auth::user();
         $picture = $request->file('pic');
         if ($picture == '') {
             return redirect('borrow/myorder/waitoget')->with('message', '借用失敗，請記得上傳借用照片~');
@@ -198,7 +211,13 @@ class ToolController extends Controller
         $getDate = date("Y-m-d");
         $order_lastreturndate = date("Y-m-d", strtotime('+ 14day'));
         Order::find($order_id)->update(['borrow_date' => $getDate, 'last_return_date' => $order_lastreturndate, 'status' => 1]);
-        // Mail::to(Auth::user()->contact_email)->send(new Using());
+
+        //寄信
+        $order = $User->orders->where('status', 1)->sortByDesc('id')->first();
+        $order_details = $User->orders->where('status', 1)->sortByDesc('id')->first()->order_details;
+        Mail::to($User->contact_email)->send(new Using($order, $order_details));
+        //寄信
+
         return redirect("borrow/myorder/using")->with('message', '借用成功!');
     }
     //傳送借用照片
@@ -211,7 +230,8 @@ class ToolController extends Controller
     }
 
     public function sendreturnpic(request $request)
-    {
+    {   
+        $User = Auth::user();
         $picture =  $request->file('pic');
         if ($picture == '') {
             return redirect('borrow/myorder/using')->with('message', '歸還失敗，記得上傳歸還照片哦~');
@@ -237,7 +257,13 @@ class ToolController extends Controller
             Item::find($order_detail->item_id)->increment('quantity', $order_detail->quantity);
         };
         Order::find($order_id)->update(['return_date' => $getDate, 'status' => 0]);
-        // Mail::to(Auth::user()->contact_email)->send(new Returned());
+
+        //寄信
+        $order = $User->orders->where('status', 0)->sortByDesc('id')->first();
+        $order_details = $User->orders->where('status', 0)->sortByDesc('id')->first()->order_details;
+        Mail::to($User->contact_email)->send(new Returned($order, $order_details));
+        //寄信
+
         return redirect("borrow/myorder/returned")->with('message', '歸還成功!');
     }
     //傳送歸還照片
