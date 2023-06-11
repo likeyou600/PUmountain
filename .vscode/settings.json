@@ -14,5 +14,8 @@
     "editor.defaultFormatter": "onecentlin.laravel-blade",
     "[css]": {
         "editor.defaultFormatter": "lonefy.vscode-JS-CSS-HTML-formatter"
+    },
+    "[php]": {
+        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
     }
 }

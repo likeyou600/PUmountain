@@ -33,8 +33,10 @@
 
                                 </div>
                             </div>
+                            
                             <div class="card-header opwhite" style="text-align: center;padding:
                                     8px;">
+                                     
                                 <p class="userfontfamily2 " style="font-size: 30px;margin-bottom:0;">
                                     借用人: {{ Auth::user()->nickname }}
 
@@ -42,6 +44,11 @@
                                 <p class="userfontfamily2 " style="font-size: 30px;margin-bottom:0;">
 
                                     借用編號: {{ $order_id }}
+                                </p>
+                                <p class="userfontfamily2 " style="font-size:22px;margin-bottom:0;color:red">
+                                    注意事項:<br>
+                                    1.請將裝備放在一起<br>拍『一張』照上傳就好<br><br>2.
+                                    使用iphone手機的社員<br>請先使用相機拍完照後<br>再點選下方上傳按鈕<br>從相簿選取照片上傳
                                 </p>
 
                                 <form method="POST"

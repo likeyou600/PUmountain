@@ -8,7 +8,7 @@ use App\Mail\Using;
 
 use Illuminate\Http\Request;
 
-use Image, DB,Mail;
+use Image, DB, Mail;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Order;
@@ -25,33 +25,33 @@ class AdminController extends Controller
 {
     //活動照片
     public function admin_picture($year)
-    {   
+    {
         $years = PhotoYear::all();
         $items = PhotoYear::where('year', $year)->first()->activityphotos;
         return view("admin/picture/admin_picture", compact('years', 'items'));
     }
     public function addnewyear(Request $request)
-    {   
+    {
         $PhotoYear = new PhotoYear();
-        $PhotoYear->year=$request->input('newyear');
+        $PhotoYear->year = $request->input('newyear');
         $PhotoYear->save();
         return back()->with('message', "新增成功");
     }
     public function addnewlink(Request $request)
-    {   
-        if($request->input('year')=="0"){
+    {
+        if ($request->input('year') == "0") {
             return back()->with('message', "請選擇學年度");
         }
         $ActivityPhoto = new ActivityPhoto();
-        $ActivityPhoto->photo_year_id=$request->input('year');
-        $ActivityPhoto->location=$request->input('name');
-        $ActivityPhoto->site=$request->input('site');
+        $ActivityPhoto->photo_year_id = $request->input('year');
+        $ActivityPhoto->location = $request->input('name');
+        $ActivityPhoto->site = $request->input('site');
         $ActivityPhoto->save();
         return back()->with('message', "新增成功");
     }
     public function deletelink(Request $request)
-    {   
-        if($request->input('deletesiteid')=='0'){
+    {
+        if ($request->input('deletesiteid') == '0') {
             return back()->with('message', "請選擇想刪除的");
         }
         ActivityPhoto::find($request->input('deletesiteid'))->delete();
@@ -145,8 +145,7 @@ class AdminController extends Controller
         $quantity = $validated['select'];
         $picture = $validated['pic'];
         $category_id = $validated['category'];
-        $category = Category::find($category_id)->first()->category;
-
+        $category = Category::find($category_id)->category;
         $statement = DB::select("SHOW TABLE STATUS LIKE 'items'");
         $new_id = $statement[0]->Auto_increment;
         $filename = $category . "_$new_id." . $picture->getClientOriginalExtension();
@@ -201,25 +200,25 @@ class AdminController extends Controller
         $filename = $order_id . "_out." . $picture->getClientOriginalExtension();
         Order::find($order_id)->update(['pic_borrow' => $filename]);
 
-        Image::make($picture)->resize(500, 500, function ($constraint) {
+        Image::make($picture)->resize(1000, 1000, function ($constraint) {
             $constraint->aspectRatio();
             $constraint->upsize();
         })->save(public_path('/uploads/order_out/' . $filename));
         $getDate = date("Y-m-d");
         $order_lastreturndate = date("Y-m-d", strtotime('+ 14day'));
         Order::find($order_id)->update(['borrow_date' => $getDate, 'last_return_date' => $order_lastreturndate, 'status' => 1]);
-        
+
         //寄信
-        $User=Order::find($order_id)->user;
+        $User = Order::find($order_id)->user;
         $order = $User->orders->where('status', 1)->sortByDesc('id')->first();
         $order_details = $User->orders->where('status', 1)->sortByDesc('id')->first()->order_details;
         Mail::to($User->contact_email)->send(new Using($order, $order_details));
         //寄信
-        
+
         return redirect('admin/allorder/using')->with('message', '代借用成功!');
     }
     public function helpcancle(Request $request)
-    {   
+    {
         $order_id = $request->input('cancle_orderid');
         $order_details = Order::find($order_id)->order_details;
         foreach ($order_details as $order_detail) {
@@ -244,7 +243,7 @@ class AdminController extends Controller
         $filename = $order_id . "_in." . $picture->getClientOriginalExtension();
         Order::find($order_id)->update(['pic_return' => $filename]);
 
-        Image::make($picture)->resize(500, 500, function ($constraint) {
+        Image::make($picture)->resize(1000, 1000, function ($constraint) {
             $constraint->aspectRatio();
             $constraint->upsize();
         })->save(public_path('/uploads/order_in/' . $filename));
@@ -255,15 +254,22 @@ class AdminController extends Controller
             Item::find($order_detail->item_id)->increment('quantity', $order_detail->quantity);
         };
         Order::find($order_id)->update(['return_date' => $getDate, 'status' => 0]);
-        
+
 
         //寄信
-        $User=Order::find($order_id)->user;
+        $User = Order::find($order_id)->user;
         $order = $User->orders->where('status', 0)->sortByDesc('id')->first();
         $order_details = $User->orders->where('status', 0)->sortByDesc('id')->first()->order_details;
         Mail::to($User->contact_email)->send(new Returned($order, $order_details));
         //寄信
 
         return redirect('admin/allorder/returned')->with('message', '管理代歸還成功');
+    }
+
+    public function changeorderitempage($order_id)
+    {
+        $items=Item::all();
+        $order=Order::find($order_id);
+        return view("admin/allorder/changeorderitem/page",compact('items','order'));
     }
 }

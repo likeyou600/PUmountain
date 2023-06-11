@@ -204,7 +204,7 @@ class ToolController extends Controller
         $filename = $order_id . "_out." . $picture->getClientOriginalExtension();
         Order::find($order_id)->update(['pic_borrow' => $filename]);
 
-        Image::make($picture)->resize(500, 500, function ($constraint) {
+        Image::make($picture)->resize(1000, 1000, function ($constraint) {
             $constraint->aspectRatio();
             $constraint->upsize();
         })->save(public_path('/uploads/order_out/' . $filename));
@@ -245,7 +245,7 @@ class ToolController extends Controller
         $filename = $order_id . "_in." . $picture->getClientOriginalExtension();
         Order::find($order_id)->update(['pic_return' => $filename]);
 
-        Image::make($picture)->resize(500, 500, function ($constraint) {
+        Image::make($picture)->resize(1000, 1000, function ($constraint) {
             $constraint->aspectRatio();
             $constraint->upsize();
         })->save(public_path('/uploads/order_in/' . $filename));

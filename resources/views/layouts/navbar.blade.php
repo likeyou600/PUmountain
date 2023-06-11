@@ -2,11 +2,10 @@
     {{-- navbar-expand-sm --}}
 
 
-    <input type="image" src="{{ asset('picture/material/pu.jpg') }}" onclick="location.href='/PUmountain'"
-        class="puimg">
+    <input type="image" src="{{ asset('picture/material/pu.jpg') }}" onclick="location.href='/'" class="puimg">
 
 
-    <img src="/PUmountain/picture/material/PUL.png" alt="" class="PUtitle" onclick="location.href='/PUmountain'">
+    <img src="{{ asset('picture/material/PUL.png') }}" alt="" class="PUtitle" onclick="location.href='/'">
     {{-- <p class="PUtitle">靜宜大學登山社</p> --}}
     @guest
     <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -34,7 +33,7 @@
 
                 <a class="nav-link " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false" style="color: black;margin-right: 10px; display: contents;">
-                    <img src="{{asset("uploads/userpic/".Auth::user()->picture)}}" class="navuserpic">
+                    <img src="{{asset(" uploads/userpic/".Auth::user()->picture)}}" class="navuserpic">
                     <i class="fas fa-angle-down fa-2x" style="vertical-align: middle;"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end animate__animated animate__bounceIn animate__faster custumdrop"

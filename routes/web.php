@@ -19,7 +19,7 @@ use App\Http\Controllers\BulletinController;
 
 
 
-Route::view('PUmountain', 'PUmountain')->name('PUmountain');
+Route::view('/', 'PUmountain')->name('PUmountain');
 
 Route::view('register', 'PURegister')->name('register')->middleware('auth.backtoprofile');
 Route::view('login', 'PULogin')->name('login')->middleware('auth.backtoprofile');
@@ -92,6 +92,7 @@ Route::prefix('admin')->middleware('auth.admin')->name('admin.')->group(function
 
     Route::get('allorder/{status}', [AdminController::class, 'allorder'])->name('allorder');
 
+    Route::get('changeorderitem/{order_id}', [AdminController::class, 'changeorderitempage'])->name('changeorderitem');
     Route::post('helpborrow', [AdminController::class, 'helpborrow'])->name('helpborrow');
     Route::post('helpcancle', [AdminController::class, 'helpcancle'])->name('helpcancle');
     Route::post('helpreturn', [AdminController::class, 'helpreturn'])->name('helpreturn');
@@ -100,7 +101,6 @@ Route::prefix('admin')->middleware('auth.admin')->name('admin.')->group(function
     Route::post('addnewyear', [AdminController::class, 'addnewyear'])->name('addnewyear');
     Route::post('addnewlink', [AdminController::class, 'addnewlink'])->name('addnewlink');
     Route::post('deletelink', [AdminController::class, 'deletelink'])->name('deletelink');
-
 });
 
 Route::prefix('bulletin')->name('bulletin.')->group(function () {
@@ -109,5 +109,3 @@ Route::prefix('bulletin')->name('bulletin.')->group(function () {
 });
 
 Route::get('picture/{year}', [ToolController::class, 'PUpicture'])->name('ActivityPicture');
-
-
